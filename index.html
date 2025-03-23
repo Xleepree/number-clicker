@@ -16,7 +16,7 @@
         </div>
 
         <div class="pointCounter" onclick="increasePoints()">
-            <h1 id="points">0</h1>
+            <h1 id="points">5000</h1>
         </div>
 
         <div class="mainDiv">
@@ -39,6 +39,15 @@
                 <p id="steroidsPrice"><small>100 points</small></p>
             </div>
 
+            <div class="upgradeDiv" id="fedora" onclick="purchaseFedora()">
+                <img class="upgradeImg" src="images/fedora.png">
+                <h2>magical fedora</h2>
+                <p>this magical hat will bring points to you!<br>
+                <br>
+                gives you 2 points per second</p>
+                <p><small>5,000 points</small></p>
+            </div>
+
             <div class="upgradeDiv" id="monkeySlavery" onclick="enslaveMonkey()">
                 <img class="upgradeImg" src="images/slave.png">
                 <h2>monkey slave</h2>
@@ -49,12 +58,14 @@
                 <p><small>500 points</small></p>
             </div>
 
-            <div class="upgradeDiv" id="gambling" onclick="placeholder">
+            <div class="upgradeDiv" id="gambling" onclick="beIrresponsible()">
                 <img class="upgradeImg" src="images/gambling.png">
-                <h2>gambling (coming soon)</h2>
+                <h2>gambling</h2>
                 <p>when in doubt, gamble! you won't lose it all, i promise..<br>
-                <small>Gamble responsibly.</small></p>
-                <p><small>200 points</small></p>
+                <small>Gamble responsibly.</small><br>
+                <br>
+                get up to x4 the amount of points you have! <b>Or lose it all.</b></p>
+                <p id="gamblingPrice"><small>150 points</small></p>
             </div>
 
             <div class="upgradeDiv" id="capybaraFren" onclick="revealCapybara()">
