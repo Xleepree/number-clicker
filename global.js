@@ -89,7 +89,7 @@
 
     // helper
 
-        function helper() {
+        function helperman() {
             let points = Number(document.getElementById("points").innerText);
             if (points >= 500) {
                 document.getElementById("points").innerText = points - 500; // deduction
