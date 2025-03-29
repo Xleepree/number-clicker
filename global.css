@@ -1,65 +1,69 @@
 /* font stuffs */
 
-* {
-    font-family: Arial, Helvetica, sans-serif
-}
+    * {
+        font-family: Arial, Helvetica, sans-serif;
+    }
 
 /* point counter */
 
-.pointCounter {
-    text-align: center;
-    background: linear-gradient(#fff227, #fff8e7, #3e7fff);
-    user-select: none;
-    -ms-user-select: none;
-    -webkit-user-select: none;
-    border: solid black 2px;
-    font-size: 10vw;
-    transition: border 1s;
-}
+    .pointCounter {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: linear-gradient(#fff227, #fff8e7, #3e7fff);
+        user-select: none;
+        -ms-user-select: none;
+        -webkit-user-select: none;
+        border: solid black 2px;
+        font-size: 3vw;
+        transition: border 1s;
+    }
 
-.pointCounter:hover {
-    border: white 20px solid;
-}
+    .pointCounter:hover {
+        border: white 20px solid;
+    }
 
-.pointCounter:active {
-    border: black 20px solid;
-}
+    .pointCounter:active {
+        border: black 20px solid;
+    }
 
 /* div/containers */
 
-.pageGrid {
-    position: fixed;
-    margin: 0 auto;
-    display: grid;
-    gap: 2px 2px;
-    grid-template-columns: 1fr 1fr;
-    height: 98vh;
-    width: 98vw;
-}
+    .pageGrid {
+        position: fixed;
+        left: 0;
+        top: 0;
+        margin: 0 auto;
+        display: grid;
+        gap: 2px;
+        grid-template-columns: 1fr 1fr;
+        height: 100%;
+        width: 100%;
+    }
 
-.leftDiv {
-    text-align: center;
-    background-color: white;
-    overflow: scroll;
-    border: solid black 2px;
-    padding: 1em;
-}
+    .leftDiv {
+        text-align: center;
+        background-color: white;
+        overflow: scroll;
+        border: solid black 2px;
+        padding: 1em;
+    }
 
-.upgradeDiv {
-    margin: 0 auto 1em auto;
-    padding: 0.5em;
-    width: 38.75vw;
-    border: 2px black solid;
-    transition: background-color 0.1s, width 0.3s;
-}
+    .upgradeDiv {
+        margin: 0 auto 1em auto;
+        padding: 0.5em;
+        width: 38.75vw;
+        border: 2px black solid;
+        transition: background-color 0.1s, width 0.3s;
+    }
 
-.upgradeDiv:active {
-    background-color: lightgray;
-}
+    .upgradeDiv:active {
+        background-color: lightgray;
+    }
 
-.upgradeDiv:hover {
-    width: 36vw;
-}
+    .upgradeDiv:hover {
+        width: 36vw;
+    }
 
 /* used in changelog only */
 
@@ -88,51 +92,53 @@
         color: white;
     }
 
-/* link and button stuffs */
+/* links, buttons, inputs, etc. */
 
-a:link {
-    color: rgb(68, 171, 255);
-    text-decoration: none;
-    transition: font-size 0.2s;
-}
+    a:link {
+        color: rgb(68, 171, 255);
+        text-decoration: none;
+        transition: font-size 0.2s;
+    }
 
-a:visited {
-    color: rgb(68, 171, 255);
-    text-decoration: none;
-}
+    a:visited {
+        color: rgb(68, 171, 255);
+        text-decoration: none;
+    }
 
-a:hover {
-    color: rgb(0, 119, 255);
-    font-weight: bold;
-    text-decoration: underline;
-    font-size: 110%;
-}
+    a:hover {
+        color: rgb(0, 119, 255);
+        font-weight: bold;
+        text-decoration: underline;
+        font-size: 110%;
+    }
 
-a:active {
-    color: rgb(0, 119, 255);
-    font-weight: bold;
-    text-decoration: none;
-}
+    a:active {
+        color: rgb(0, 119, 255);
+        font-weight: bold;
+        text-decoration: none;
+    }
 
-button {
-    margin: 2px;
-    border-radius: 15px;
-    color: black;
-    transition: color 0.5s, border 0.5s, background-color 0.5s;
-}
+    button {
+        margin: 2px;
+        border-radius: 15px;
+        color: black;
+        transition: color 0.5s, border 0.5s, background-color 0.5s;
+    }
 
-button:hover {
-    color: white;
-    border: white solid 2px;
-    border-radius: 15px;
-    background-color: black;
-}
+    button:hover {
+        color: white;
+        border: white solid 2px;
+        border-radius: 15px;
+        background-color: black;
+    }
 
-/* misc */
+    input {
+        margin: 2px;
+        border-radius: 5px;
+        color: black;
+    }
 
-body {
-    padding: 0.5em;
-}
+/* img */
 
 .logoImg {
     width: 30vw;
