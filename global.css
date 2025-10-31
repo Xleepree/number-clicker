@@ -1,0 +1,441 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap');
+* {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* theme */
+:root {
+    --bg-color: white;
+    --bg-color-opposite: black;
+    --bg-color-accent: rgb(194, 194, 194);
+    --border-color: black;
+    --border-color-opposite: rgb(255, 255, 255);
+    --container-hover: antiquewhite;
+    --upgrade-active: lightgray;
+}
+
+.darkTheme {
+    --bg-color: black;
+    --bg-color-opposite: white;
+    --bg-color-accent: rgb(48, 48, 48);
+    --border-color: white;
+    --border-color-opposite: black;
+    --container-hover: rgb(41, 38, 35);
+    --upgrade-active: rgb(34, 34, 34);
+}
+
+/* point counter */
+.counterHolder {
+    display: grid;
+    gap: var(--border-color) 2px;
+    grid-template-rows: 10vh 80vh 10vh;
+}
+
+.counterLines {
+    border: solid var(--border-color) 2px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    white-space: nowrap;
+    background-color: var(--bg-color);
+    color: var(--border-color);
+}
+
+.pointCounter {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    user-select: none;
+    -ms-user-select: none;
+    -webkit-user-select: none;
+    border: solid var(--border-color) 2px;
+    font-size: 3vw;
+    transition: border 1s;
+    overflow: hidden;
+}
+
+#main_pointCounterGradient {
+    position: absolute;
+    width: 100vw;
+    height: 100vw;
+    background: conic-gradient(#fff227, #fff8e7, #84adff, #3e7fff, rgb(255, 104, 3), orange, #fff227);
+    animation: backgroundSpin 8s linear infinite;
+    z-index: -10;
+}
+
+#main_points {
+    text-shadow:
+        -4px -4px 0 #fff,
+        4px -4px 0 #fff,
+        -4px  4px 0 #fff,
+        4px  4px 0 #fff;
+}
+
+.pointCounter:hover {
+    border: var(--border-color-opposite) 20px solid;
+}
+
+.pointCounter:active {
+    border: var(--border-color) 20px solid;
+}
+
+/* div/containers */
+/* page */
+.pageGrid {
+    position: fixed;
+    left: 0;
+    top: 0;
+    margin: 0 auto;
+    display: grid;
+    gap: 2px var(--border-color);
+    grid-template-columns: 1fr 1fr 1fr;
+    height: 100%;
+    width: 100%;
+}
+.menu {
+    text-align: center;
+    background-color:  var(--bg-color);
+    overflow: scroll;
+    border: solid var(--border-color) 2px;
+    padding: 1em;
+    color: var(--border-color);
+}
+.store {
+    text-align: center;
+    background-color:  var(--bg-color);
+    overflow: scroll;
+    border: solid var(--border-color) 2px;
+    padding: 1em;
+    color: var(--border-color);
+}
+.upgradeDiv {
+    margin: 0 auto 1em auto;
+    padding: 0.5em;
+    width: 96%;
+    border: 2px var(--border-color) solid;
+    transition: background-color 0.4s;
+    text-align: left;
+    overflow: hidden;
+    color: var(--border-color);
+    background-color: var(--bg-color);
+    box-shadow: 6px 6px 5px var(--bg-color-opposite);
+}
+
+.upgradeDiv:active {
+    background-color: var(--upgrade-active);
+}
+
+.upgradeDiv:hover {
+    background-color: var(--container-hover);
+}
+
+.achievementImg {
+    height: 35%;
+    width: 35%;
+    position: absolute;
+    top: 1em;
+    right: 1em;
+}
+
+#scrbox_alertBox {
+    height: 17vh;
+    width: 17vw;
+    background-color: var(--bg-color-opposite);
+    border: 2px var(--border-color-opposite) solid;
+    box-shadow: 6px 6px 5px var(--bg-color);
+    text-align: left;
+    animation: fadeInBody 0.4s;
+    color: var(--border-color-opposite);
+    opacity: 0;
+    position: fixed;
+    top: 3em;
+    right: 3em;
+    display: none;
+    padding: 1em;
+}
+
+#scrbox_achBox {
+    height: 27vh;
+    width: 27vw;
+    background-color: var(--bg-color-opposite);
+    border: 2px var(--border-color-opposite) solid;
+    box-shadow: 6px 6px 5px var(--bg-color);
+    text-align: left;
+    animation: fadeInBody 0.4s;
+    color: var(--border-color-opposite);
+    opacity: 0;
+    position: fixed;
+    bottom: 3em;
+    right: 3em;
+    display: none;
+    padding: 1em;
+}
+
+.alertBoxOK {
+    position: absolute;
+    right: 1em;
+    bottom: 1em;
+}
+
+.confirm {
+    position: absolute;
+    right: 1em;
+    bottom: 1em;
+}
+
+/* menu */
+.menuPage {
+    animation: fadeInBody ease-in-out 0.5s;
+}
+.menuPage > div:hover {
+    border: 2px var(--border-color-opposite) dashed;
+}
+.menuPage > div {
+    margin: 0 auto 1em auto;
+    padding: 0.5em;
+    width: 96%;
+    border: 2px var(--border-color) dashed;
+    text-align: left;
+    overflow: hidden;
+    color: var(--border-color);
+    transition: border 0.4s;
+}
+.menuPageDivHeader {
+    max-width: 100%;
+    text-align: center;
+    border: 2px var(--border-color) dotted;
+    margin: 0 auto 7px auto;
+    padding: 0.5em;
+}
+.saveslotsContainer {
+    max-width: 100%;
+    transition: background-color 0.4s;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 7px;
+}
+.saveslotsContainer > div {
+    border: 2px var(--border-color) solid;
+    padding: 0.5em;
+    color: var(--border-color);
+    box-shadow: 1.5px 1.5px 1.25px var(--bg-color-opposite);
+    background-color: var(--bg-color);
+}
+
+/* achievements tabley stuffs */
+.achsContainer {
+    max-width: 100%;
+    transition: background-color 0.4s;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    gap: 7px;
+}
+.achsContainer > div {
+    border: 2px var(--border-color) solid;
+    padding: 0.5em;
+    color: var(--border-color);
+    box-shadow: 1.5px 1.5px 1.25px var(--bg-color-opposite);
+    background-color: var(--bg-color);
+}
+
+/* links, buttons, inputs, etc. */
+a:link {
+    color: rgb(68, 171, 255);
+    text-decoration: none;
+    transition: font-size 0.2s;
+}
+a:visited {
+    color: rgb(68, 171, 255);
+    text-decoration: none;
+}
+a:hover {
+    color: rgb(0, 119, 255);
+    font-weight: bold;
+    text-decoration: underline;
+    font-size: 110%;
+}
+a:active {
+    color: rgb(0, 119, 255);
+    font-weight: bold;
+    text-decoration: none;
+}
+button {
+    margin: 2px;
+    border-radius: 15px;
+    color: var(--border-color);
+    transition: color 0.5s, border 0.5s, background-color 0.5s;
+    border: var(--border-color) solid 2px;
+    background-color: var(--bg-color);
+}
+button:hover {
+    color: var(--border-color-opposite);
+    border: var(--border-color-opposite) solid 2px;
+    border-radius: 15px;
+    background-color: var(--bg-color-opposite);
+}
+input[type=range] {
+    border-radius: 15px;
+    background-color: var(--bg-color);
+    outline: var(--border-color) solid 2px;
+    -webkit-appearance: none;
+    appearance: none;
+}
+input[type=range]::-webkit-slider-thumb {
+    width: 18px;
+    height: 18px;
+    border-radius: 15px;
+    background: var(--border-color);
+    outline: var(--border-color) solid 2px;
+    cursor: pointer;
+    transition: background 0.3s;
+    -webkit-appearance: none;
+    appearance: none;
+}
+input[type=range]::-webkit-slider-thumb:hover {
+    background: var(--bg-color);
+}
+
+/* menu options */
+.menuButtons > button {
+    width: 7.5em;
+    color: var(--border-color-opposite);
+    border: var(--border-color-opposite) solid 2px;
+    background-color: var(--border-color);
+}
+.menuButtons > button:hover {
+    color: var(--border-color);
+    background-color: var(--bg-color);
+    border: var(--border-color) solid 2px;
+}
+
+/* img */
+.indicatorImg {
+    width: 10vw;
+    margin-top: -1em;
+}
+
+.pageIndicatorImg {
+    width: 30%;
+}
+
+.logoImg {
+    width: 80%;
+}
+
+.upgradeImg {
+    width: 10vw;
+    float: right;
+    position: relative;
+    left: 3em;
+}
+
+.framedImg {
+    border: var(--border-color) solid 2px;
+    width: 96%;
+    margin: 0 auto 1em auto;
+    box-shadow: 6px 6px 5px var(--bg-color-opposite);
+}
+
+/* scrollbar */
+::-webkit-scrollbar {
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background-color: var(--bg-color);
+}
+
+::-webkit-scrollbar-thumb {
+    background-image: linear-gradient(var(--bg-color-opposite), grey);
+    box-shadow: 6px 6px 5px var(--bg-color-opposite);
+}
+
+/* anim */
+@keyframes fadeInBody {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes fadeOutBody {
+    from { opacity: 1; }
+    to { opacity: 0; }
+}
+
+@keyframes pop {
+    0%   { transform: scale(1); }
+    50%  { transform: scale(1.25); }
+    100% { transform: scale(1); }
+}
+
+.pop {
+    animation: pop 0.2s;
+}
+
+@keyframes fadeInOut {
+    0%   { opacity: 1; }
+    40%  { opacity: 0; }
+    60%  { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+.fadeInOut {
+    animation: fadeInOut 0.5s;
+}
+
+@keyframes backgroundSpin { /* for point counter gradient */
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* other */
+.body {
+    animation: fadeInBody ease-in-out 0.5s;
+    transition: filter 0.5s ease-in-out;
+}
+#main_cursorCrackEffectsOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: white;
+    pointer-events: none;
+    mix-blend-mode: difference;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+    z-index: 9999;
+}
+#main_splashScreen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: black;
+    transition: opacity 0.5s ease-in-out;
+    z-index: 9999;
+    display: flex;
+    opacity: 1;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+#main_splashScreen.invisible {
+    opacity: 0;
+}
+#main_splashScreenLogo {
+    width: 20vw;
+}
+#main_splashScreenLoading {
+    width: 4vw;
+    animation: backgroundSpin 1s linear infinite;
+}

@@ -1,8 +1,8 @@
-# <a href=games.xleepree.pages.dev>games.xleepree.pages.dev</a>
-web games that i make for fun
-## number clicker
-cookie clicker type thing<br>
-it's ok
-## pong thing
-wip
+<img src="images/main/numberClicker.png" width="400" height="400">
 
+# [number clicker](https://numclicker.pages.dev)  
+## CLICKIES FOR THE DOPAMINE
+
+number clicker is my version of a clicker game!  
+It is the clicker game of all time  
+I don't find clicker games very fun personally, but this is quite fun to work on  
