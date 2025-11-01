@@ -103,7 +103,7 @@ function mmmCrack() {
         purchaseAutoclicker({
             id: "helperman",
             cost: 500,
-            powerGain: 50,
+            powerGain: 15,
             sound: "sfx_gunCock"
         });
         document.getElementById("stritem_helpermanImg").src = "images/upgrades/helperman-danger.png"
@@ -113,7 +113,7 @@ function mmmCrack() {
         purchaseAutoclicker({
             id: "sunglasses",
             cost: 1350,
-            powerGain: 370,
+            powerGain: 37,
             sound: "sfx_ohSnap"
         });
     }
@@ -122,7 +122,7 @@ function mmmCrack() {
         purchaseAutoclicker({
             id: "sweatshopWorker",
             cost: 2500,
-            powerGain: 250,
+            powerGain: 99,
             sound: "sfx_sewing"
         });
     }
@@ -131,7 +131,7 @@ function mmmCrack() {
         purchaseAutoclicker({
             id: "fedora",
             cost: 5000,
-            powerGain: 500,
+            powerGain: 135,
             sound: "sfx_magick"
         });
     }
@@ -140,7 +140,7 @@ function mmmCrack() {
         purchaseAutoclicker({
             id: "warjammer",
             cost: 15000,
-            powerGain: 1500,
+            powerGain: 245,
             sound: "sfx_knockou"
         });
     }
@@ -149,7 +149,7 @@ function mmmCrack() {
         purchaseAutoclicker({
             id: "vrooman",
             cost: 60000,
-            powerGain: 6000,
+            powerGain: 440,
             sound: "sfx_freepBeep"
         });
     }
@@ -158,7 +158,7 @@ function mmmCrack() {
         purchaseAutoclicker({
             id: "dealer",
             cost: 300000,
-            powerGain: 30000,
+            powerGain: 870,
             sound: "sfx_velcro"
         });
     }
@@ -167,7 +167,7 @@ function mmmCrack() {
         purchaseAutoclicker({
             id: "elmaspet",
             cost: 1000000,
-            powerGain: 150000,
+            powerGain: 1969,
             sound: "sfx_boom"
         });
     }
@@ -176,7 +176,7 @@ function mmmCrack() {
         purchaseAutoclicker({
             id: "taxevaiden",
             cost: 2000000,
-            powerGain: 200000,
+            powerGain: 2936,
             sound: "sfx_keyboardy"
         });
     }
@@ -185,7 +185,7 @@ function mmmCrack() {
         purchaseAutoclicker({
             id: "masterClicker",
             cost: 10000000,
-            powerGain: 1000000,
+            powerGain: 10001,
             sound: "sfx_powenup"
         });
     }
@@ -194,7 +194,7 @@ function mmmCrack() {
         purchaseAutoclicker({
             id: "timmy",
             cost: 600000000,
-            powerGain: 60000000,
+            powerGain: 600000,
             sound: "sfx_whatHaveYouDone"
         });
     }
