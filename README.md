@@ -3,7 +3,8 @@
 # [number clicker](https://numberclicker.pages.dev)  
 ## CLICKIES FOR THE DOPAMINE
 
-number clicker is a clicker game 
+number clicker is a clicker game    
 It is the clicker game of all time  
+
 
 
