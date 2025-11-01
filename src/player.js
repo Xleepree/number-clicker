@@ -64,7 +64,8 @@ let gameStateLive = {
     currentSaveSlot: null, // no save loaded
     clickCount: 0, // cps meter idle
     cps: 0, // clicks per second
-    autoclickerInterval: 0 // autoclicker off
+    autoclickerInterval: 0, // autoclicker off
+    version: "v1.0.1"
 }
 
 const gameStateDefaults = {
@@ -115,13 +116,9 @@ function load(slot) {
         gameStateAch.set(achName, value === "true");
     }
 
-    // dev mode
-    if (localStorage.getItem(`${prefix}dev`) === "true") {
-        initializeDev();
-    }
-
     setPoints(gameState.points);
     autoClick();
+    updateStatMeters();
 }
 
 // This function is demonic. READ IT VERY CAREFULLY

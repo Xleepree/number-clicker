@@ -67,7 +67,6 @@ function injectSteroids() {
         setPoints(gameState.points);
         gameState.pointsPerClick += 1;
         gameState.steroidsPrice *= 2;
-        document.getElementById("stritem_steroidsPrice").innerText = `${gameState.steroidsPrice} points`;
         updateStatMeters();
         playSfx("sfx_syringe");
     } else { return insufficientPoints(); }
@@ -85,10 +84,9 @@ function mmmCrack() {
         document.body.appendChild(bodyEffects);
         bodyEffects.style.opacity = "1";
 
-        const ceiling = gameState.pointsPerClick * 15;
-        gameState.pointsPerClick *= Math.floor(gameState.pointsPerClick + Math.random() * ceiling);
+        const ceiling = gameState.pointsPerClick * 7;
+        gameState.pointsPerClick += Math.floor(gameState.pointsPerClick + Math.random() * ceiling);
         gameState.cursorCrackPrice *= 6;
-        document.getElementById("stritem_cursorCrackPrice").innerText = `${gameState.cursorCrackPrice} points`;
         playSfx("sfx_feelingFunny");
         updateStatMeters();
 
@@ -202,7 +200,7 @@ function mmmCrack() {
     }
 // gambling
 function beIrresponsible() {
-    const loseChance = 0.80; // 80% chance of point loss... what it's true
+    const loseChance = 0.55;
 
     if (gameState.points >= gameState.gamblingPrice) {
         if (Math.random() < loseChance) { // lose
@@ -224,7 +222,6 @@ function beIrresponsible() {
         }
 
         gameState.gamblingPrice *= 9;
-        document.getElementById("stritem_gamblingPrice").innerText = `${gameState.gamblingPrice} points`;
         updateStatMeters();
     } else { return insufficientPoints(); }
 }
@@ -257,7 +254,7 @@ const achList = {
         "Lose fifteen gambles.",
     ],
     oneHundredGamblesLost: [
-        "Did you know there's a hard-coded 80% chance you lose HAHAHAHA IDIOT",
+        "Crippling gambling addiction",
         "Lose one hundred gambles.",
     ],
     fiveHundredGamblesLost: [

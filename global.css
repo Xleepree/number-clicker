@@ -439,3 +439,6 @@ input[type=range]::-webkit-slider-thumb:hover {
     width: 4vw;
     animation: backgroundSpin 1s linear infinite;
 }
+#menu_homeVersion {
+    margin-bottom: 0.1em;
+}

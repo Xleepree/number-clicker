@@ -11,12 +11,43 @@ const data_splashScreen = `
 
 // menu
 const data_menuButtons = `
+    <button onclick="menuLoad('data_home')">home</button>
     <button onclick="menuLoad('data_stats')">stats</button>
     <button onclick="menuLoad('data_achievements')">achievements</button>
     <button onclick="menuLoad('data_options')">options</button>
     <br>
     <br>
 `;
+
+const data_home = `
+    <span class="menuPage">
+
+        <img class="logoImg" src="images/main/numberClicker.png">
+        <h1>num.clicker home</h1>
+        <p>clickies for the dopamine</p>
+
+        <hr>
+
+        <div>
+            <div class="menuPageDivHeader">
+                <h2>mike wahousekey</h2>
+                <img src="images/menu/mike-wahousekey.png" class="indicatorImg">
+            </div>
+            <p>he's here<br>
+            <small>heehehehehe</small></p>
+        </div>
+
+        <div style="text-align: center">
+            <div class="menuPageDivHeader">
+                <h2>latest changelog</h2>
+                <img src="images/menu/latest-changelog.png" class="indicatorImg">
+            </div>
+            <h3 id="menu_homeVersion"></h3>
+            <a href="https://github.com/Xleepree/number-clicker/releases">GitHub</a>
+        </div>
+
+    </span>
+`
 
 const data_stats = `
     <span class="menuPage">
@@ -100,7 +131,7 @@ const data_achievements = `
             </div>
 
             <div id="ach_oneHundredGamblesLost">
-                <h2>Did you know there's a hard-coded 80% chance you lose HAHAHAHA IDIOT</h2>
+                <h2>Crippling gambling addiction</h2>
                 <p>Lose one hundred gambles.</p>
             </div>
 

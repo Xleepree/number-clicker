@@ -84,21 +84,11 @@ function playSfxRandomPitch(sfx) {
 // menu and stats
 function menuLoad(option) {
     const menu = document.getElementById("main_menu");
-    if (option === "data_stats") {
+    if (option === "data_home") {
+        menu.innerHTML = data_menuButtons + data_home;
+    } else if (option === "data_stats") {
         menu.innerHTML = data_menuButtons + data_stats;
-
-        // update stats on the dom updating
-        setTimeout(() => {
-            document.getElementById("stat_points").innerText = `points: ${gameState.points}`;
-            document.getElementById("stat_CPower").innerText = `click power: ${gameState.pointsPerClick}`;
-            document.getElementById("stat_ACPower").innerText = `autoclicks per second: ${gameState.autoclickerPower}`;
-            document.getElementById("stat_ptsSpentDisplay").innerText = `points spent: ${gameState.pointsSpent}`;
-            document.getElementById("stat_gamblesWonDisplay").innerText = `gambles won: ${gameState.gamblesWon}`;
-            document.getElementById("stat_gamblesLostDisplay").innerText = `gambles lost: ${gameState.gamblesLost}`;
-            document.getElementById("stat_gamblingPointsWonDisplay").innerText = `points won from gambling: ${gameState.gamblingPointsWon}`;
-            document.getElementById("stat_gamblingPointsLostDisplay").innerText = `points lost from gambling: ${gameState.gamblingPointsLost}`;
-            updateStatMeters();
-        }, 0);
+        setTimeout(() => { updateStatMeters(); }, 0);
     } else if (option === "data_achievements") {
         menu.innerHTML = data_menuButtons + data_achievements;
         setTimeout(() => { updateStatMeters(); }, 0);
@@ -106,9 +96,10 @@ function menuLoad(option) {
         menu.innerHTML = data_menuButtons + data_options;
         setTimeout(() => { updateStatMeters(); }, 0);
     } else {
-        console.error("Bad parameter.")
+        console.error("Bad parameter.");
     }
 }
+document.addEventListener("DOMContentLoaded", () => { menuLoad('data_home'); });
 function updateStatMeters() {
     // general
         const statPointsElem = document.getElementById("stat_points");
@@ -152,6 +143,11 @@ function updateStatMeters() {
     // click power (under point counter) vvvvv
     const cpElemMain = document.getElementById("stat_clickPowerDisplay");
     if (cpElemMain) cpElemMain.innerText = `click power: ${gameState.pointsPerClick} point(s)`;
+
+    // prices
+    document.getElementById("stritem_steroidsPrice").innerText = `${gameState.steroidsPrice} points`;
+    document.getElementById("stritem_gamblingPrice").innerText = `${gameState.gamblingPrice} points`;
+    document.getElementById("stritem_cursorCrackPrice").innerText = `${gameState.cursorCrackPrice} points`;
 }
 
 // screen boxes, prompts and the stuffs
@@ -321,3 +317,9 @@ function detectDevTools() {
     lastSize = { width: window.outerWidth, height: window.outerHeight };
 }
 setInterval(detectDevTools, 500);
+
+// fill in version
+document.addEventListener("DOMContentLoaded", () => { 
+    document.getElementById("main_counterLinesVersion").innerText = gameStateLive.version;
+    document.getElementById("menu_homeVersion").innerText = gameStateLive.version;
+});

@@ -36,38 +36,14 @@
     <body>
         <div class="pageGrid">
 
-            <div class="menu" id="main_menu">
-                <button onclick="menuLoad('data_stats')">stats</button>
-                <button onclick="menuLoad('data_achievements')">achievements</button>
-                <button onclick="menuLoad('data_options')">options</button>
-                <br>
-
-                <span class="menuPage">
-
-                    <img class="logoImg" src="images/main/numberClicker.png">
-                    <h1>menu</h1>
-                    <p>Choose a part of the menu to browse.</p>
-
-                    <hr>
-
-                    <div>
-                        <div class="menuPageDivHeader">
-                            <h2>mike wahousekey</h2>
-                            <img src="images/menu/mike-wahousekey.png" class="indicatorImg">
-                        </div>
-                        <p>he's here<br>
-                        <small>heehehehehe</small></p>
-                    </div>
-
-                </span>
-            </div>
+            <div class="menu" id="main_menu"></div>
 
             <div class="counterHolder">
                 <div class="counterLines">
                     <p>
                         <a href="https://xleepree.pages.dev/projects">made by xleepree</a> //
                         <a href="https://github.com/Xleepree/number-clicker">repository</a><br>
-                        <small>v1.0.0</small>
+                        <small id="main_counterLinesVersion"></small>
                     </p>
                 </div>
 
@@ -186,7 +162,7 @@
                     <p><small>2,000,000 points</small></p>
                 </div>
 
-                <div class="upgradeDiv" id="stritem_masterclicker" onclick="initiateMasterClicker()">
+                <div class="upgradeDiv" id="stritem_masterClicker" onclick="initiateMasterClicker()">
                     <img class="upgradeImg" src="images/upgrades/masterclicker.png">
                     <h2>master clicker</h2>
                     <p>a very good autoclicker that will bring you several thousand points<br>
