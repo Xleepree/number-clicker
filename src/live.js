@@ -86,6 +86,7 @@ function menuLoad(option) {
     const menu = document.getElementById("main_menu");
     if (option === "data_home") {
         menu.innerHTML = data_menuButtons + data_home;
+        document.getElementById("menu_homeVersion").innerText = gameStateLive.version;
     } else if (option === "data_stats") {
         menu.innerHTML = data_menuButtons + data_stats;
         setTimeout(() => { updateStatMeters(); }, 0);
