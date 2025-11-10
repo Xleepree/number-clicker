@@ -7,7 +7,7 @@ Not the best way to do it but it works
 const data_splashScreen = `
     <img id="main_splashScreenLogo" src="images/main/favicon.png">
     <img id="main_splashScreenLoading" src="images/ui/loading.svg">
-`
+`;
 
 // menu
 const data_menuButtons = `
@@ -47,7 +47,7 @@ const data_home = `
         </div>
 
     </span>
-`
+`;
 
 const data_stats = `
     <span class="menuPage">
@@ -87,7 +87,7 @@ const data_stats = `
             <p id="stat_gamblingPointsLostDisplay">points lost from gambling: 0</p>
         </div>
 
-    </span>  
+    </span>
 `;
 
 const data_achievements = `
@@ -314,7 +314,7 @@ const data_options = `
     </span>
 `;
 
-// alert/confirm
+// screen boxes
 const data_alertBoxHTML = `
     <div id="scrbox_alertBox">
         <div style="overflow-y: auto; padding-right: 1em; max-height: 90%">
@@ -323,24 +323,29 @@ const data_alertBoxHTML = `
         <button onclick="alertCOK()" class="alertBoxOK">OK</button>
     </div>
 `;
-
 const data_confirmBoxHTML = `
-    <div id="scrbox_alertBox">
-        <div style="overflow-y: auto; padding-right: 1em; max-height: 90%;">
+    <div id="scrbox_confirmBox">
+        <div style="overflow-y: auto; max-height: 90%; text-align: center;">
             <span id="scrbox_confirmBoxContent"></span>
         </div>
-        <span class="scrbox_confirm">
-            <button onclick="confirmCYES()">YES</button>
-            <button onclick="confirmCCANCEL()">CANCEL</button>
+        <span class="confirmOptions">
+            <button id="scrbox_confirmBoxYes">YES</button>
+            <button id="scrbox_confirmBoxCancel">CANCEL</button>
         </span>
     </div>
-`
-
-// ach
+`;
 const data_achBoxHTML = `
     <div id="scrbox_achBox">
         <div style="overflow-y: auto; padding-right: 1em; max-height: 90%">
             <span id="scrbox_achBoxContent"></span>
         </div>
     </div>
-`
+`;
+const data_infoBoxHTML = `
+    <div id="scrbox_infoBox">
+        <div style="overflow-y: auto; padding-right: 1em; max-height: 90%">
+            <span id="scrbox_infoBoxContent"></span>
+        </div>
+        <button onclick="infoCOK()" class="alertBoxOK">OK</button>
+    </div>
+`;

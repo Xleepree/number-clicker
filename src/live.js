@@ -19,7 +19,7 @@ splashScreen();
 // autoclicker handling
 function autoClick() {
     if (gameState.autoclickerPower <= 0) { return; }
-    playSfx('sfx_clangSound');
+    playSfx("sfx_clangSound");
     gameState.points += gameState.autoclickerPower;
     setPoints(gameState.points);
 }
@@ -27,29 +27,33 @@ setInterval(autoClick, 1000);
 
 // cps meter handling
 setInterval(updateCPS, 1000); // 1 second loop
-function trackCPS() {
-    gameStateLive.clickCount++;
-}
+function trackCPS() { gameStateLive.clickCount++; }
 function updateCPS() {
-    gameStateLive.cps = gameStateLive.clickCount;
-    gameStateLive.clickCount = 0;
-    document.getElementById("stat_cpsMeter").innerText = `CPS(clicks per second): ${gameStateLive.cps} ::`;
+  gameStateLive.cps = gameStateLive.clickCount;
+  gameStateLive.clickCount = 0;
+  document.getElementById("stat_cpsMeter").innerText = `CPS(clicks per second): ${gameStateLive.cps} ::`;
 }
 
 // audio sliders
-const sfxElements = Array.from(document.querySelectorAll('audio[id^="sfx_"]'));
-const sfxMap = Object.fromEntries(sfxElements.map(el => [el.id, el]));
-function setSfxVol(value) {
-    const volume = value / 100;
-    for (const el of sfxElements) { el.volume = volume }
-    document.getElementById("sfx_sfxValue").innerText = value;
-    localStorage.setItem("sfxVolume", value);
+{
+    const sfxElements = Array.from(document.querySelectorAll('audio[id^="sfx_"]'));
+    function setSfxVol(value) {
+        const volume = value / 100;
+        for (const el of sfxElements) {
+            el.volume = volume;
+        }
+        document.getElementById("sfx_sfxValue").innerText = value;
+        localStorage.setItem("sfxVolume", value);
+    }
 }
 
 // anim
 function animateElement(id, animClass) {
     const elem = document.getElementById(id);
-    if (!elem) { console.error(`Element "${id}" to animate not found.`); return; };
+    if (!elem) {
+        console.error(`Element "${id}" to animate not found.`);
+        return;
+    }
     elem.classList.remove("pop", "fadeInOut");
     void elem.offsetWidth;
     elem.classList.add(animClass);
@@ -59,9 +63,8 @@ function animateElement(id, animClass) {
         elem.removeEventListener("animationend", handler);
     });
 }
-
 function animateElements(elements, animClass) {
-    elements.forEach(id => animateElement(id, animClass));
+    elements.forEach((id) => animateElement(id, animClass));
 }
 
 // audio
@@ -70,15 +73,15 @@ function playSfx(sfx) {
     if (sfxHTML) {
         sfxHTML.currentTime = 0;
         sfxHTML.play();
-    } else { return console.error(`Could not find "${sfx}" element to play`) }
+    } else { return console.error(`Could not find "${sfx}" element to play`); }
 }
 function playSfxRandomPitch(sfx) {
     const sfxHTML = document.getElementById(sfx);
     if (sfxHTML) {
-        sfxHTML.playbackRate = 0.5 + Math.random() * 0.5;
+        sfxHTML.playbackRate = 0.6 + Math.random() * 0.5;
         sfxHTML.currentTime = 0;
         sfxHTML.play();
-    } else { return console.error(`Could not find "${sfx}" element to play`) }
+    } else { return console.error(`Could not find "${sfx}" element to play`); }
 }
 
 // menu and stats
@@ -96,54 +99,51 @@ function menuLoad(option) {
     } else if (option === "data_options") {
         menu.innerHTML = data_menuButtons + data_options;
         setTimeout(() => { updateStatMeters(); }, 0);
-    } else {
-        console.error("Bad parameter.");
-    }
+    } else { console.error("Bad parameter."); }
 }
-document.addEventListener("DOMContentLoaded", () => { menuLoad('data_home'); });
+document.addEventListener("DOMContentLoaded", () => { menuLoad("data_home");  });
 function updateStatMeters() {
     // general
-        const statPointsElem = document.getElementById("stat_points");
-        if (statPointsElem) { statPointsElem.innerText = `points: ${gameState.points}`; }
+    const statPointsElem = document.getElementById("stat_points");
+    if (statPointsElem) { statPointsElem.innerText = `points: ${gameState.points}`; }
 
-        const cpElem = document.getElementById("stat_CPower");
-        if (cpElem) { cpElem.innerText = `click power: ${gameState.pointsPerClick} point(s)`; }
+    const cpElem = document.getElementById("stat_CPower");
+    if (cpElem) { cpElem.innerText = `click power: ${gameState.pointsPerClick} point(s)`; }
 
-        const acElem = document.getElementById("stat_ACPower");
-        if (acElem) { acElem.innerText = `autoclicks per second: ${gameState.autoclickerPower}`; }
+    const acElem = document.getElementById("stat_ACPower");
+    if (acElem) { acElem.innerText = `autoclicks per second: ${gameState.autoclickerPower}`; }
 
     // gains
-        const gamblesWonElem = document.getElementById("stat_gamblesWonDisplay");
-        if (gamblesWonElem) { gamblesWonElem.innerText = `gambles won: ${gameState.gamblesWon}`; }
+    const gamblesWonElem = document.getElementById("stat_gamblesWonDisplay");
+    if (gamblesWonElem) { gamblesWonElem.innerText = `gambles won: ${gameState.gamblesWon}`; }
 
-        const gamblingPointsWonElem = document.getElementById("stat_gamblingPointsWonDisplay");
-        if (gamblingPointsWonElem) { gamblingPointsWonElem.innerText = `points won from gambling: ${gameState.gamblingPointsWon}`; }
+    const gamblingPointsWonElem = document.getElementById("stat_gamblingPointsWonDisplay");
+    if (gamblingPointsWonElem) { gamblingPointsWonElem.innerText = `points won from gambling: ${gameState.gamblingPointsWon}`; }
 
     // losses
-        const ptsSpentElem = document.getElementById("stat_ptsSpentDisplay");
-        if (ptsSpentElem) { ptsSpentElem.innerText = `points spent: ${gameState.pointsSpent}`; }
+    const ptsSpentElem = document.getElementById("stat_ptsSpentDisplay");
+    if (ptsSpentElem) { ptsSpentElem.innerText = `points spent: ${gameState.pointsSpent}`; }
 
-        const gamblesLostElem = document.getElementById("stat_gamblesLostDisplay");
-        if (gamblesLostElem) { gamblesLostElem.innerText = `gambles lost: ${gameState.gamblesLost}`; }
+    const gamblesLostElem = document.getElementById("stat_gamblesLostDisplay");
+    if (gamblesLostElem) { gamblesLostElem.innerText = `gambles lost: ${gameState.gamblesLost}`; }
 
-        const gamblingPointsLostElem = document.getElementById("stat_gamblingPointsLostDisplay");
-        if (gamblingPointsLostElem) { gamblingPointsLostElem.innerText = `points lost from gambling: ${gameState.gamblingPointsLost}`; }
+    const gamblingPointsLostElem = document.getElementById("stat_gamblingPointsLostDisplay");
+    if (gamblingPointsLostElem) { gamblingPointsLostElem.innerText = `points lost from gambling: ${gameState.gamblingPointsLost}`; }
 
     // achievements
-        for (const [achName, unlocked] of gameStateAch.entries()) {
-            const achElem = document.getElementById(`ach_${achName}`);
-            if (!achElem) continue;
-
-            if (unlocked) {
-                achElem.style.opacity = "1";
-            } else {
-                achElem.style.opacity = "0.5";
-            }
+    for (const [achName, unlocked] of gameStateAch.entries()) {
+        const achElem = document.getElementById(`ach_${achName}`);
+        if (!achElem) continue;
+        if (unlocked) {
+            achElem.style.opacity = "1";
+        } else {
+            achElem.style.opacity = "0.5";
         }
+    }
 
     // click power (under point counter) vvvvv
     const cpElemMain = document.getElementById("stat_clickPowerDisplay");
-    if (cpElemMain) cpElemMain.innerText = `click power: ${gameState.pointsPerClick} point(s)`;
+    if (cpElemMain) { cpElemMain.innerText = `click power: ${gameState.pointsPerClick} point(s)`; }
 
     // prices
     document.getElementById("stritem_steroidsPrice").innerText = `${gameState.steroidsPrice} points`;
@@ -151,7 +151,7 @@ function updateStatMeters() {
     document.getElementById("stritem_cursorCrackPrice").innerText = `${gameState.cursorCrackPrice} points`;
 }
 
-// screen boxes, prompts and the stuffs
+// screen boxes
 // alert
 function alertC(text) {
     let alertBox = document.getElementById("scrbox_alertBox");
@@ -160,57 +160,51 @@ function alertC(text) {
         alertBox = document.getElementById("scrbox_alertBox");
     }
     const alertBoxContent = document.getElementById("scrbox_alertBoxContent");
-    if (alertBoxContent) { alertBoxContent.innerText = text; }
+    if (alertBoxContent) {
+        alertBoxContent.innerText = text;
+    }
     alertBox.style.opacity = "1";
     alertBox.style.display = "block";
 }
 function alertCOK() {
     const alertBox = document.getElementById("scrbox_alertBox");
     if (alertBox) {
-        alertBox.style.animation = "fadeOutBody 0.4s";
+        alertBox.style.animation = "fadeOutBody 0.2s";
         setTimeout(() => {
-            alertBox.style.display = "none";
-            alertBox.style.opacity = "0";
-            setTimeout(() => { alertBox.remove(); }, 100);
-        }, 400)
+        alertBox.style.display = "none";
+        alertBox.style.opacity = "0";
+        setTimeout(() => { alertBox.remove(); }, 100);
+        }, 200);
     }
 }
 // confirm
-let scrbox_confirmCSolved = null;
 function confirmC(text) {
-    let confirmBox = document.getElementById("scrbox_alertBox");
-    if (!confirmBox) {
-        document.body.insertAdjacentHTML("beforeend", data_confirmBoxHTML);
-        confirmBox = document.getElementById("scrbox-alertBox");
-    }
-    const confirmBoxContent = document.getElementById("scrbox_confirmBoxContent");
-    if (confirmBoxContent) { confirmBoxContent.innerText = text; }
-    confirmBox.style.display = "block";
-    confirmBox.style.opacity = "1";
-}
-function confirmCYES() {
-    const confirmBox = document.getElementById("scrbox_alertBox");
-    if (confirmBox) {
-        confirmBox.style.animation = "fadeOutBody 0.4s";
-        setTimeout(() => {
-            confirmBox.style.display = "none";
-            confirmBox.style.opacity = "0";
-            confirmCSolved = true;
-            setTimeout(() => { confirmBox.remove(); }, 100);
-        }, 400);
-    }
-}
-function confirmCCANCEL() {
-    const confirmBox = document.getElementById("scrbox_alertBox");
-    if (confirmBox) {
-        confirmBox.style.animation = "fadeOutBody 0.4s";
-        setTimeout(() => {
-            confirmBox.style.display = "none";
-            confirmBox.style.opacity = "0";
-            confirmCSolved = false;
-            setTimeout(() => { confirmBox.remove(); }, 100);
-        }, 400);
-    }
+    return new Promise((resolve) => {
+        let confirmBox = document.getElementById("scrbox_confirmBox");
+        if (!confirmBox) {
+            document.body.insertAdjacentHTML("beforeend", data_confirmBoxHTML);
+            confirmBox = document.getElementById("scrbox_confirmBox");
+        }
+        const confirmBoxContent = document.getElementById("scrbox_confirmBoxContent");
+        if (confirmBoxContent) { confirmBoxContent.innerText = text; }
+        confirmBox.style.display = "block";
+        confirmBox.style.opacity = "1";
+        playSfx("sfx_confirmyLialog");
+
+        const close = (result) => {
+            confirmBox.style.animation = "fadeOutBody 0.2s";
+            setTimeout(() => {
+                confirmBox.style.opacity = "0";
+                confirmBox.style.display = "none";
+                setTimeout(() => { confirmBox.remove(); });
+                resolve(result);
+            }, 200);
+        }
+
+        // hook up buttons
+        document.getElementById("scrbox_confirmBoxYes").onclick = () => close(true);
+        document.getElementById("scrbox_confirmBoxCancel").onclick = () => close(false);
+    });
 }
 // achievement
 function achC(title, description) {
@@ -220,11 +214,11 @@ function achC(title, description) {
         achBox = document.getElementById("scrbox_achBox");
     }
     const achBoxContent = document.getElementById("scrbox_achBoxContent");
-    if (achBoxContent) { 
+    if (achBoxContent) {
         achBoxContent.innerHTML = `
             <h2>${title}</h2>
             <p>${description}</p>
-        `; 
+        `;
     }
     achBox.style.opacity = "1";
     achBox.style.display = "block";
@@ -236,23 +230,49 @@ function achCHIDE() {
     if (achBox) {
         achBox.style.animation = "fadeOutBody 0.4s";
         setTimeout(() => {
-            achBox.style.display = "none";
-            achBox.style.opacity = "0";
-            setTimeout(() => { achBox.remove(); }, 100);
-        }, 400)
+        achBox.style.display = "none";
+        achBox.style.opacity = "0";
+        setTimeout(() => { achBox.remove(); }, 100);
+        }, 400);
+    }
+}
+// info
+function infoC(text) {
+    let infoBox = document.getElementById("scrbox_infoBox");
+    if (!infoBox) {
+        document.body.insertAdjacentHTML("beforeend", data_infoBoxHTML);
+        infoBox = document.getElementById("scrbox_infoBox");
+    }
+    const infoBoxContent = document.getElementById("scrbox_infoBoxContent");
+    if (infoBoxContent) {
+        infoBoxContent.innerText = text;
+    }
+    infoBox.style.opacity = "1";
+    infoBox.style.display = "block";
+    playSfx("sfx_infoDing");
+}
+function infoCOK() {
+    const infoBox = document.getElementById("scrbox_infoBox");
+    if (infoBox) {
+        infoBox.style.animation = "fadeOutBody 0.2s";
+        setTimeout(() => {
+        infoBox.style.display = "none";
+        infoBox.style.opacity = "0";
+        setTimeout(() => { infoBox.remove(); }, 100);
+        }, 200);
     }
 }
 
 // acheivements on interval
 function checkForAch() {
     // gambling
-    if (gameState.gamblesWon >= 1) { ach("firstGamble"); } else if (gameState.gamblesLost >= 1) { ach("firstGamble"); }
+    if (gameState.gamblesWon >= 1) { ach("firstGamble"); }
+    if (gameState.gamblesLost >= 1) { ach("firstGamble"); }
     if (gameState.gamblesLost >= 15) { ach("fifteenGamblesLost"); }
-    if (gameState.gamblesLost >= 100) { ach("oneHundredGamblesLost");} 
+    if (gameState.gamblesLost >= 100) { ach("oneHundredGamblesLost"); }
     if (gameState.gamblesLost >= 500) { ach("fiveHundredGamblesLost"); }
     if (gameState.gamblingPointsLost >= 10000) { ach("tenThousandPointsLostFromGambling"); }
-
-    if (gameState.gamblesWon >= 15) { ach("fifteenGamblesWon"); }
+    if (gameState.gamblesWon >= 15) {ach("fifteenGamblesWon"); }
     if (gameState.gamblesWon >= 100) { ach("oneHundredGamblesWon"); }
     if (gameState.gamblesWon >= 500) { ach("fiveHundredGamblesWon"); }
     if (gameState.gamblingPointsWon >= 10000) { ach("tenThousandPointsWonFromGambling"); }
@@ -279,21 +299,18 @@ function checkForAch() {
         "elmaspet",
         "taxevaiden",
         "masterclicker",
-        "timmy"
+        "timmy",
     ];
     for (const id of autoclickerIds) {
         const elem = document.getElementById(`stritem_${id}`);
-        if (elem && elem.classList.contains("purchased")) {
-            ach(id);
-        }
+        if (elem && elem.classList.contains("purchased")) { ach(id); }
     }
 
     // autoclicker power
     if (gameState.autoclickerPower >= 1000) { ach("oneThousandAPS"); }
     if (gameState.autoclickerPower >= 100000) { ach("oneHundredThousandAPS"); }
-
-    if (document.getElementById("main_cursorCrackEffectsOverlay")) { ach("cursorCrack"); };
-    if (gameState.infinityReached) { ach("achInfinity"); }
+    if (document.getElementById("main_cursorCrackEffectsOverlay")) { ach("cursorCrack"); }
+    if (gameState.infinity === "true") { ach("achInfinity"); }
     if (isNaN(gameState.points)) { ach("achNaN"); }
 }
 setInterval(checkForAch, 2000);
@@ -307,20 +324,21 @@ function detectDevTools() {
         console.warn("The browser tools may be open.");
         document.getElementById("main_pointCounterGradient").style.background = `
             conic-gradient(
-                rgba(174, 64, 64, 1), 
-                rgba(102, 126, 234, 1), 
-                rgba(141, 213, 42, 1), 
-                rgba(192, 79, 134, 1), 
+                rgba(174, 64, 64, 1),
+                rgba(102, 126, 234, 1),
+                rgba(141, 213, 42, 1),
+                rgba(192, 79, 134, 1),
                 rgba(174, 64, 64, 1)
             )
         `;
+        clearInterval(detectDevTools);
     }
     lastSize = { width: window.outerWidth, height: window.outerHeight };
 }
 setInterval(detectDevTools, 500);
 
 // fill in version
-document.addEventListener("DOMContentLoaded", () => { 
+document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("main_counterLinesVersion").innerText = gameStateLive.version;
     document.getElementById("menu_homeVersion").innerText = gameStateLive.version;
 });

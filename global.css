@@ -123,15 +123,12 @@
     background-color: var(--bg-color);
     box-shadow: 6px 6px 5px var(--bg-color-opposite);
 }
-
 .upgradeDiv:active {
     background-color: var(--upgrade-active);
 }
-
 .upgradeDiv:hover {
     background-color: var(--container-hover);
 }
-
 .achievementImg {
     height: 35%;
     width: 35%;
@@ -139,7 +136,7 @@
     top: 1em;
     right: 1em;
 }
-
+/* scrbox */
 #scrbox_alertBox {
     height: 17vh;
     width: 17vw;
@@ -147,7 +144,7 @@
     border: 2px var(--border-color-opposite) solid;
     box-shadow: 6px 6px 5px var(--bg-color);
     text-align: left;
-    animation: fadeInBody 0.4s;
+    animation: fadeInBody 0.2s;
     color: var(--border-color-opposite);
     opacity: 0;
     position: fixed;
@@ -156,7 +153,40 @@
     display: none;
     padding: 1em;
 }
-
+#scrbox_confirmBox {
+    height: 19vh;
+    width: 19vw;
+    background-color: var(--bg-color-opposite);
+    border: 2px var(--border-color-opposite) solid;
+    box-shadow: 6px 6px 5px var(--bg-color);
+    text-align: left;
+    animation: fadeInBody 0.2s;
+    color: var(--border-color-opposite);
+    opacity: 0;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: none;
+    padding: 1em;
+}
+#scrbox_infoBox {
+    height: 70vh;
+    width: 70vw;
+    background-color: var(--bg-color-opposite);
+    border: 2px var(--border-color-opposite) solid;
+    box-shadow: 6px 6px 5px var(--bg-color);
+    text-align: left;
+    animation: fadeInBody 0.2s;
+    color: var(--border-color-opposite);
+    opacity: 0;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: none;
+    padding: 1em;
+}
 #scrbox_achBox {
     height: 27vh;
     width: 27vw;
@@ -173,17 +203,17 @@
     display: none;
     padding: 1em;
 }
-
 .alertBoxOK {
     position: absolute;
     right: 1em;
     bottom: 1em;
 }
-
-.confirm {
+.confirmOptions {
     position: absolute;
-    right: 1em;
+    left: 0;
     bottom: 1em;
+    width: 100%;
+    text-align: center;
 }
 
 /* menu */
@@ -241,6 +271,33 @@
     color: var(--border-color);
     box-shadow: 1.5px 1.5px 1.25px var(--bg-color-opposite);
     background-color: var(--bg-color);
+}
+
+/* splash screen */
+#main_splashScreen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: black;
+    transition: opacity 0.5s ease-in-out;
+    z-index: 9999;
+    display: flex;
+    opacity: 1;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+#main_splashScreen.invisible {
+    opacity: 0;
+}
+#main_splashScreenLogo {
+    width: 20vw;
+}
+#main_splashScreenLoading {
+    width: 4vw;
+    animation: backgroundSpin 1s linear infinite;
 }
 
 /* links, buttons, inputs, etc. */
@@ -413,31 +470,6 @@ input[type=range]::-webkit-slider-thumb:hover {
     opacity: 0;
     transition: opacity 0.5s ease-in-out;
     z-index: 9999;
-}
-#main_splashScreen {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background: black;
-    transition: opacity 0.5s ease-in-out;
-    z-index: 9999;
-    display: flex;
-    opacity: 1;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-}
-#main_splashScreen.invisible {
-    opacity: 0;
-}
-#main_splashScreenLogo {
-    width: 20vw;
-}
-#main_splashScreenLoading {
-    width: 4vw;
-    animation: backgroundSpin 1s linear infinite;
 }
 #menu_homeVersion {
     margin-bottom: 0.1em;

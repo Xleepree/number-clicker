@@ -1,12 +1,14 @@
-/* 
+/*
 Save control and game state for numberclicker
 uses localStorage to store gameState and gameStateAch in save slots
 */
 
 let gameState = {
     points: Number(document.getElementById("main_points").innerText), // 0
+    infinity: false,
     pointsPerClick: 1, // click power
     steroidsPrice: 100,
+    steroidsUsed: 0,
     cursorCrackPrice: 50,
     gamblingPrice: 150,
     autoclickerPower: 0,
@@ -15,7 +17,7 @@ let gameState = {
     pointsSpent: 0,
     gamblesLost: 0,
     gamblingPointsLost: 0
-}
+};
 
 let gameStateAch = new Map([
     // gambling
@@ -56,6 +58,7 @@ let gameStateAch = new Map([
     ["oneThousandAPS", false],
     ["oneHundredThousandAPS", false],
 
+    ["cursorCrack", false],
     ["achNaN", false],
     ["achInfinity", false]
 ]);
@@ -65,13 +68,16 @@ let gameStateLive = {
     clickCount: 0, // cps meter idle
     cps: 0, // clicks per second
     autoclickerInterval: 0, // autoclicker off
-    version: "v1.0.1"
-}
+    version: "v1.0.2"
+};
 
 const gameStateDefaults = {
     points: 0,
+    infinity: false,
     pointsPerClick: 1,
     steroidsPrice: 100,
+    steroidsUsed: 0,
+    cursorCrackPrice: 50,
     gamblingPrice: 150,
     autoclickerPower: 0,
     gamblesWon: 0,
@@ -79,7 +85,7 @@ const gameStateDefaults = {
     pointsSpent: 0,
     gamblesLost: 0,
     gamblingPointsLost: 0
-}
+};
 
 function setSlot(slotNumber) {
     gameStateLive.currentSaveSlot = slotNumber;
@@ -88,71 +94,71 @@ function setSlot(slotNumber) {
 
 function save(slot) {
     const prefix = `slot${slot}-`;
-
     // save game state
-    Object.keys(gameState).forEach(key => {
+    Object.keys(gameState).forEach((key) => {
         localStorage.setItem(prefix + key, gameState[key]);
     });
-
     // save achievements
     for (let [achName, value] of gameStateAch.entries()) {
         localStorage.setItem(`${prefix}ach-${achName}`, value);
     }
+    playSfx("sfx_svribble");
 }
 
 function load(slot) {
+    if (gameStateLive.currentSaveSlot == slot) {
+        alertC(`Save slot ${slot} already loaded.`);
+        playSfx("sfx_badAlertSound");
+        return;
+    }
     gameStateLive.currentSaveSlot = slot;
     const prefix = `slot${slot}-`;
-
     // load game state
-    Object.keys(gameState).forEach(key => {
+    Object.keys(gameState).forEach((key) => {
         const value = localStorage.getItem(prefix + key);
         gameState[key] = value !== null ? Number(value) : gameStateDefaults[key];
     });
-
     // load achievements
     for (let achName of gameStateAch.keys()) {
         const value = localStorage.getItem(`${prefix}ach-${achName}`);
         gameStateAch.set(achName, value === "true");
     }
-
+    playSfx("sfx_compac");
     setPoints(gameState.points);
     autoClick();
     updateStatMeters();
 }
 
 // This function is demonic. READ IT VERY CAREFULLY
-function reset(slot) {
-    confirmCSolved = null;
-    confirmC("are you sure?");
-    const wait = setInterval(() => {
-        if (confirmCSolved !== null) {
-            clearInterval(wait);
-            if (confirmCSolved == true) {
-                if (slot !== "all") {
-                    const prefix = `slot${slot}-`;
-                    Object.keys(localStorage).forEach(key => {
-                        if (key.startsWith(prefix)) { localStorage.removeItem(key) };
-                    });
+async function reset(slot) {
+    const confirmed = await confirmC("are you sure?");
+    if (!confirmed) { return; }
 
-                    if (Number(slot) !== gameStateLive.currentSaveSlot) { 
-                        Object.assign(gameState, gameStateDefaults);
-                        for (let achName of gameStateAch.keys()) { gameStateAch.set(achName, false); }
-                    }
-                } else if (slot == "all") {
-                    const theme = localStorage.getItem("theme");
-                    localStorage.clear();
-                    if (theme !== null) { localStorage.setItem("theme", theme) };
-                    Object.assign(gameState, gameStateDefaults);
-                    for (let achName of gameStateAch.keys()) { gameStateAch.set(achName, false); }
-                }
-
-                setPoints(gameState.points);
-                autoClick();
-                updateStatMeters();
-            }
+    const storeItems = document.querySelectorAll(".upgradeDiv");
+    if (slot !== "all") {
+        const prefix = `slot${slot}-`;
+        Object.keys(localStorage).forEach((key) => {
+            if (key.startsWith(prefix)) { localStorage.removeItem(key); }
+        });
+        if (Number(slot) == gameStateLive.currentSaveSlot) {
+            Object.assign(gameState, gameStateDefaults);
+            for (let achName of gameStateAch.keys()) { gameStateAch.set(achName, false); }
+            for (const item of storeItems) { item.style.backgroundColor = "var(--bg-color)"; }
+            for (const item of storeItems) { item.classList = "upgradeDiv"; }
         }
-    }, 100);
+    } else if (slot == "all") {
+        const theme = localStorage.getItem("theme");
+        localStorage.clear();
+        if (theme !== null) { localStorage.setItem("theme", theme); }
+        Object.assign(gameState, gameStateDefaults);
+        for (let achName of gameStateAch.keys()) { gameStateAch.set(achName, false); }
+        for (const item of storeItems) { item.style.backgroundColor = "var(--bg-color)"; }
+        for (const item of storeItems) { item.classList = "upgradeDiv"; }
+    }
+    playSfx("sfx_trash");
+    setPoints(gameState.points);
+    autoClick();
+    updateStatMeters();
 }
 
 function viewSavedData(save) {
@@ -170,18 +176,15 @@ function viewSavedData(save) {
         "gamblingPointsLost",
     ];
     let data = {};
-    keys.forEach(key => {
-        data[key] = localStorage.getItem(prefix + key);
-    });
+    keys.forEach((key) => { data[key] = localStorage.getItem(prefix + key); });
     let achievements = {};
     for (let achName of gameStateAch.keys()) {
         achievements[achName] = localStorage.getItem(`${prefix}ach-${achName}`);
     }
-    alertC(
+    infoC(
         `
-        disclaimer: "null" means you have not saved anything\n 
+        disclaimer: "null" means you have not saved anything\n
         save ${save} contains:\n
-        \n
         gameState:\n
         ${JSON.stringify(data, null, 2)}\n
         \n

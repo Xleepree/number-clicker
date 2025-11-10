@@ -14,13 +14,14 @@ function setPoints(newPoints) {
 }
 
 function increasePoints() {
-    playSfxRandomPitch('sfx_clickSound');
+    playSfxRandomPitch("sfx_clickSound");
 
     gameState.points += gameState.pointsPerClick;
     setPoints(gameState.points);
 
     if (gameState.points === Infinity) {
-        alertC("congratulations! you've reached infinity");
+        alertC("congratulations! You've reached Infinity");
+        gameState.infinity = "true";
     } else if (isNaN(gameState.points)) {
         alertC("Number is NaN. Something went wrong.");
         console.log("Points are no longer a number. (NaN)");
@@ -41,12 +42,7 @@ function insufficientPoints() {
     alertC("not enough points.");
     playSfx("sfx_badAlertSound");
 }
-function purchaseAutoclicker({
-    id,
-    cost,
-    powerGain,
-    sound = null
-}) {
+function purchaseAutoclicker({ id, cost, powerGain, sound = null }) {
     if (gameState.points < cost) { return insufficientPoints(); }
     deductPoints(cost);
     gameState.autoclickerPower += powerGain;
@@ -55,10 +51,14 @@ function purchaseAutoclicker({
         item.style.backgroundColor = "var(--upgrade-active)";
         item.classList.add("purchased");
         item.onclick = null;
-    } else { return console.error(`Store item "${item}" does not exist`) }
+    } else {
+        return console.error(`Store item "${item}" does not exist`);
+    }
     autoClick();
     updateStatMeters();
-    if (sound) { playSfx(sound); }
+    if (sound) {
+        playSfx(sound);
+    }
 }
 // steroids
 function injectSteroids() {
@@ -69,6 +69,7 @@ function injectSteroids() {
         gameState.steroidsPrice *= 2;
         updateStatMeters();
         playSfx("sfx_syringe");
+        gameState.steroidsUsed++;
     } else { return insufficientPoints(); }
 }
 // cursor crack
@@ -85,7 +86,8 @@ function mmmCrack() {
         bodyEffects.style.opacity = "1";
 
         const ceiling = gameState.pointsPerClick * 7;
-        gameState.pointsPerClick += Math.floor(gameState.pointsPerClick + Math.random() * ceiling);
+        gameState.pointsPerClick += Math.floor(
+        gameState.pointsPerClick + Math.random() * ceiling);
         gameState.cursorCrackPrice *= 6;
         playSfx("sfx_feelingFunny");
         updateStatMeters();
@@ -99,128 +101,130 @@ function mmmCrack() {
     } else { return insufficientPoints(); }
 }
 // helper
-    function helperman() {
-        purchaseAutoclicker({
-            id: "helperman",
-            cost: 500,
-            powerGain: 15,
-            sound: "sfx_gunCock"
-        });
-        document.getElementById("stritem_helpermanImg").src = "images/upgrades/helperman-danger.png"
+function helperman() {
+    purchaseAutoclicker({
+        id: "helperman",
+        cost: 500,
+        powerGain: 15,
+        sound: "sfx_gunCock",
+    });
+    if (gameState.points >= 500) {
+        document.getElementById("stritem_helpermanImg").src = "images/upgrades/helperman-danger.png";
     }
+}
 // sunglasses
-    function sunglasses() {
-        purchaseAutoclicker({
-            id: "sunglasses",
-            cost: 1350,
-            powerGain: 37,
-            sound: "sfx_ohSnap"
-        });
-    }
+function sunglasses() {
+    purchaseAutoclicker({
+        id: "sunglasses",
+        cost: 1350,
+        powerGain: 37,
+        sound: "sfx_ohSnap",
+    });
+}
 // sweatshop worker
-    function sweatshopWorker() {
-        purchaseAutoclicker({
-            id: "sweatshopWorker",
-            cost: 2500,
-            powerGain: 99,
-            sound: "sfx_sewing"
-        });
-    }
+function sweatshopWorker() {
+    purchaseAutoclicker({
+        id: "sweatshopWorker",
+        cost: 2500,
+        powerGain: 99,
+        sound: "sfx_sewing",
+    });
+}
 // fedora
-    function purchaseFedora() {
-        purchaseAutoclicker({
-            id: "fedora",
-            cost: 5000,
-            powerGain: 135,
-            sound: "sfx_magick"
-        });
-    }
+function purchaseFedora() {
+    purchaseAutoclicker({
+        id: "fedora",
+        cost: 5000,
+        powerGain: 135,
+        sound: "sfx_magick",
+    });
+}
 // warjammer
-    function warjammer() {
-        purchaseAutoclicker({
-            id: "warjammer",
-            cost: 15000,
-            powerGain: 245,
-            sound: "sfx_knockou"
-        });
-    }
+function warjammer() {
+    purchaseAutoclicker({
+        id: "warjammer",
+        cost: 15000,
+        powerGain: 245,
+        sound: "sfx_knockou",
+    });
+}
 // vrooman
-    function vroomingMan() {
-        purchaseAutoclicker({
-            id: "vrooman",
-            cost: 60000,
-            powerGain: 440,
-            sound: "sfx_freepBeep"
-        });
-    }
+function vroomingMan() {
+    purchaseAutoclicker({
+        id: "vrooman",
+        cost: 60000,
+        powerGain: 440,
+        sound: "sfx_freepBeep",
+    });
+}
 // dealer
-    function dealer() {
-        purchaseAutoclicker({
-            id: "dealer",
-            cost: 300000,
-            powerGain: 870,
-            sound: "sfx_velcro"
-        });
-    }
+function dealer() {
+    purchaseAutoclicker({
+        id: "dealer",
+        cost: 300000,
+        powerGain: 870,
+        sound: "sfx_velcro",
+    });
+}
 // elmaspet
-    function elmaspet() {
-        purchaseAutoclicker({
-            id: "elmaspet",
-            cost: 1000000,
-            powerGain: 1969,
-            sound: "sfx_boom"
-        });
-    }
+function elmaspet() {
+    purchaseAutoclicker({
+        id: "elmaspet",
+        cost: 1000000,
+        powerGain: 1969,
+        sound: "sfx_boom",
+    });
+}
 // taxevaiden
-    function tacksEVadion() {
-        purchaseAutoclicker({
-            id: "taxevaiden",
-            cost: 2000000,
-            powerGain: 2936,
-            sound: "sfx_keyboardy"
-        });
-    }
+function tacksEVadion() {
+    purchaseAutoclicker({
+        id: "taxevaiden",
+        cost: 2000000,
+        powerGain: 2936,
+        sound: "sfx_keyboardy",
+    });
+}
 // masterclicker
-    function initiateMasterClicker() {
-        purchaseAutoclicker({
-            id: "masterClicker",
-            cost: 10000000,
-            powerGain: 10001,
-            sound: "sfx_powenup"
-        });
-    }
+function initiateMasterClicker() {
+    purchaseAutoclicker({
+        id: "masterClicker",
+        cost: 10000000,
+        powerGain: 10001,
+        sound: "sfx_powenup",
+    });
+}
 // timmy
-    function timmy() {
-        purchaseAutoclicker({
-            id: "timmy",
-            cost: 600000000,
-            powerGain: 600000,
-            sound: "sfx_whatHaveYouDone"
-        });
-    }
+function timmy() {
+    purchaseAutoclicker({
+        id: "timmy",
+        cost: 600000000,
+        powerGain: 600000,
+        sound: "sfx_whatHaveYouDone",
+    });
+}
 // gambling
 function beIrresponsible() {
     const loseChance = 0.55;
-
     if (gameState.points >= gameState.gamblingPrice) {
-        if (Math.random() < loseChance) { // lose
-            const loss = Math.floor(Math.random() * (gameState.points));
+        if (Math.random() < loseChance) {
+            // lose
+            const loss = Math.floor(Math.random() * gameState.points);
             gameState.points -= loss;
             setPoints(gameState.points);
             alertC(`unlucky! lost ${loss} points`);
             gameState.gamblesLost++;
             gameState.gamblingPointsLost += loss;
             playSfx("sfx_mujajaLaugh");
-        } else { // win
+        } else {
+            // win
             const win = Math.floor(Math.random() * (gameState.points * 2));
             gameState.points += win;
             setPoints(gameState.points);
-            alertC(`lucky you! won ${win} points`)
+            alertC(`lucky you! won ${win} points`);
             gameState.gamblesWon++;
             gameState.gamblingPointsWon += win;
             playSfx("sfx_diceThrow");
         }
-
         gameState.gamblingPrice *= 9;
         updateStatMeters();
     } else { return insufficientPoints(); }
@@ -235,23 +239,20 @@ function ach(ach) {
     }
     let fnAchTitle = fnAch[0];
     let fnAchDescription = fnAch[1];
-
     if (gameStateAch.get(ach)) { return; }
     gameStateAch.set(ach, true);
-
     achC(fnAchTitle, fnAchDescription);
-
     updateStatMeters();
 }
 const achList = {
     // gambling
     firstGamble: [
-        "99% of gamblers quit before winning big", 
-        "Gamble for the first time.", 
+        "99% of gamblers quit before winning big",
+        "Gamble for the first time.",
     ],
     fifteenGamblesLost: [
         "You should stop... nah jk",
-        "Lose fifteen gambles.",
+        "Lose fifteen gambles."
     ],
     oneHundredGamblesLost: [
         "Crippling gambling addiction",
@@ -285,11 +286,11 @@ const achList = {
     // steroids
     tenSteroids: [
         "Steroid abuse",
-        "Take steroids ten times.",
+        "Take steroids ten times."
     ],
     oneHundredSteroids: [
         "FEEL THE BURN",
-        "Take steroids one hundred times.",
+        "Take steroids one hundred times."
     ],
     oneThousandSteroids: [
         "Where's the burn",
@@ -313,7 +314,7 @@ const achList = {
     // autoclickers
     helperman: [
         "Ignore the firearm",
-        "Purchase the Helper Man.",
+        "Purchase the Helper Man."
     ],
     sunglasses: [
         "Tint",
@@ -321,39 +322,39 @@ const achList = {
     ],
     sweatshopWorker: [
         "Top-notch ethics",
-        "Purchase the Sweatshop Worker.",
+        "Purchase the Sweatshop Worker."
     ],
     fedora: [
         "Magical, m'lady",
-        "Purchase the Magical Fedora.",
+        "Purchase the Magical Fedora."
     ],
     warjammer: [
         "I SWEAR it's strawberry jam",
-        "Purchase the Warjammer.",
+        "Purchase the Warjammer."
     ],
     vrooman: [
         "He goes vroom vroom, and beep beep",
-        "Purchase the Vrooman.",
+        "Purchase the Vrooman."
     ],
     dealer: [
         "Let's make a deal, kid",
-        "Purchase The Dealer.",
+        "Purchase The Dealer."
     ],
     elmaspet: [
         "Miller miner minor",
-        "Purchase elmaspet.",
+        "Purchase elmaspet."
     ],
     taxevaiden: [
         "console.log(`what's up`)",
-        "Purchase taxevaiden.",
+        "Purchase taxevaiden."
     ],
     masterClicker: [
         "Master of clicks, and probably carpal tunnel",
-        "Purchase the Master Clicker.",
+        "Purchase the Master Clicker."
     ],
     timmy: [
         "Scene not safe",
-        "Purchase Timmy.",
+        "Purchase Timmy."
     ],
 
     // aps (autoclicks per second)
@@ -366,10 +367,7 @@ const achList = {
         "Reach one hundred thousand autoclicks per second.",
     ],
 
-    cursorCrack: [
-        "Digital substance abuse",
-        "Use the Cursor Crack."
-    ],
+    cursorCrack: ["Digital substance abuse", "Use the Cursor Crack."],
 
     achNaN: [
         "Oops",
@@ -378,22 +376,18 @@ const achList = {
 
     achInfinity: [
         "End of the line buddy boy, ya ran out of bits",
-        "Reach the 32-bit integer limit. (\"Infinity\")",
-    ]
-}
+        'Reach the 32-bit integer limit. ("Infinity")',
+    ],
+};
 
 // theme control
 function setTheme(theme) {
     document.documentElement.classList.remove("darkTheme");
-    if (theme) {
-        document.documentElement.classList.add(theme);
-    }
-
+    if (theme) { document.documentElement.classList.add(theme); }
     localStorage.setItem("theme", theme);
+    playSfx("sfx_menuSwitchy");
 }
 document.addEventListener("DOMContentLoaded", () => {
     const savedTheme = localStorage.getItem("theme") || "";
-    if (savedTheme) {
-        document.documentElement.classList.add(savedTheme);
-    }
+    if (savedTheme) { document.documentElement.classList.add(savedTheme); }
 });
