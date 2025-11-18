@@ -29,9 +29,9 @@ setInterval(autoClick, 1000);
 setInterval(updateCPS, 1000); // 1 second loop
 function trackCPS() { gameStateLive.clickCount++; }
 function updateCPS() {
-  gameStateLive.cps = gameStateLive.clickCount;
-  gameStateLive.clickCount = 0;
-  document.getElementById("stat_cpsMeter").innerText = `CPS(clicks per second): ${gameStateLive.cps} ::`;
+    gameStateLive.cps = gameStateLive.clickCount;
+    gameStateLive.clickCount = 0;
+    document.getElementById("stat_cpsMeter").innerText = `CPS(clicks per second): ${gameStateLive.cps} ::`;
 }
 
 // audio sliders

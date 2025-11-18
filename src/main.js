@@ -88,7 +88,7 @@ function mmmCrack() {
         const ceiling = gameState.pointsPerClick * 7;
         gameState.pointsPerClick += Math.floor(
         gameState.pointsPerClick + Math.random() * ceiling);
-        gameState.cursorCrackPrice *= 6;
+        gameState.cursorCrackPrice *= 3;
         playSfx("sfx_feelingFunny");
         updateStatMeters();
 
