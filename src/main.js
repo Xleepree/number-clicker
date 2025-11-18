@@ -217,7 +217,7 @@ function beIrresponsible() {
             playSfx("sfx_mujajaLaugh");
         } else {
             // win
-            const win = Math.floor(Math.random() * (gameState.points * 2));
+            const win = Math.floor(Math.random() * (gameState.points * 4));
             gameState.points += win;
             setPoints(gameState.points);
             alertC(`lucky you! won ${win} points`);
