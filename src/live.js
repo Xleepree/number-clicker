@@ -309,6 +309,8 @@ function checkForAch() {
     // autoclicker power
     if (gameState.autoclickerPower >= 1000) { ach("oneThousandAPS"); }
     if (gameState.autoclickerPower >= 100000) { ach("oneHundredThousandAPS"); }
+
+    if (gameState.fentanylUsed == true) { ach("fentanyl"); }
     if (document.getElementById("main_cursorCrackEffectsOverlay")) { ach("cursorCrack"); }
     if (gameState.infinity === "true") { ach("achInfinity"); }
     if (isNaN(gameState.points)) { ach("achNaN"); }

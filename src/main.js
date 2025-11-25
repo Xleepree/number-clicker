@@ -72,6 +72,18 @@ function injectSteroids() {
         gameState.steroidsUsed++;
     } else { return insufficientPoints(); }
 }
+// fentanyl
+function uhOhFent() {
+    if (gameState.points >= gameState.fentanylPrice) {
+        deductPoints(gameState.fentanylPrice);
+        setPoints(gameState.points);
+        gameState.pointsPerClick *= 2;
+        gameState.fentanylPrice *= 15;
+        updateStatMeters();
+        playSfx("sfx_pillSpill");
+        if (gameState.fentanylUsed == false) { gameState.fentanylUsed == true; }
+    } else { return insufficientPoints(); }
+}
 // cursor crack
 function mmmCrack() {
     if (gameState.points >= gameState.cursorCrackPrice) {
@@ -367,7 +379,15 @@ const achList = {
         "Reach one hundred thousand autoclicks per second.",
     ],
 
-    cursorCrack: ["Digital substance abuse", "Use the Cursor Crack."],
+    fentanyl: [
+        "Oh HELL no",
+        "Use ... Fentanyl."
+    ],
+
+    cursorCrack: [
+        "Digital substance abuse", 
+        "Use the Cursor Crack."
+    ],
 
     achNaN: [
         "Oops",

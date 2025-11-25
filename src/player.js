@@ -7,11 +7,17 @@ let gameState = {
     points: Number(document.getElementById("main_points").innerText), // 0
     infinity: false,
     pointsPerClick: 1, // click power
+    autoclickerPower: 0,
+
+    // prices for stuffys
     steroidsPrice: 100,
-    steroidsUsed: 0,
     cursorCrackPrice: 50,
     gamblingPrice: 150,
-    autoclickerPower: 0,
+    fentanylPrice: 500,
+
+    // extra stats
+    steroidsUsed: 0,
+    fentanylUsed: false,
     gamblesWon: 0,
     gamblingPointsWon: 0,
     pointsSpent: 0,
