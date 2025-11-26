@@ -360,3 +360,10 @@ const data_infoBoxHTML = `
         <button onclick="infoCOK()" class="alertBoxOK">OK</button>
     </div>
 `;
+const data_notifBoxHTML = `
+    <div id="scrbox_notifBox">
+        <div style="overflow-y: auto; padding-right: 1em; max-height: 90%">
+            <p id="scrbox_notifBoxContent"></p>
+        </div>
+    </div>
+`;

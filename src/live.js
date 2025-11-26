@@ -265,6 +265,32 @@ function infoCOK() {
         }, 200);
     }
 }
+// notification
+function notifC(text) {
+    let notifBox = document.getElementById("scrbox_notifBox");
+    if (!notifBox) {
+        document.body.insertAdjacentHTML("beforeend", data_notifBoxHTML);
+        notifBox = document.getElementById("scrbox_notifBox");
+    }
+    const notifBoxContent = document.getElementById("scrbox_notifBoxContent");
+    if (notifBoxContent) {
+        notifBoxContent.innerText = text;
+    }
+    notifBox.style.opacity = "1";
+    notifBox.style.display = "block";
+    setTimeout(notifCHIDE, 4000);
+}
+function notifCHIDE() {
+    const notifBox = document.getElementById("scrbox_notifBox");
+    if (notifBox) {
+        notifBox.style.animation = "fadeOutBody 0.4s";
+        setTimeout(() => {
+        notifBox.style.display = "none";
+        notifBox.style.opacity = "0";
+        setTimeout(() => { notifBox.remove(); }, 100);
+        }, 400);
+    }
+}
 
 // acheivements on interval
 function checkForAch() {
@@ -352,11 +378,10 @@ document.addEventListener("DOMContentLoaded", () => {
 // fullscreen
 function toggleWindowFullscreen() {
     if (document.body.requestFullscreen) {
-        if (document.body.fullscreenElement) {
+        if (document.fullscreenElement) {
             document.exitFullscreen();
-            alertC("you have exited fullscreen.");
         }
         document.body.requestFullscreen();
-        alertC("you have entered number clicker in fullscreen. You can press F11 or Esc to leave, or toggle manually from options.");
+        notifC("you have entered number clicker in fullscreen. You can press F11 or Esc to leave, or toggle manually from options.");
     }
 }
