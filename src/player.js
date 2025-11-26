@@ -13,6 +13,7 @@ let gameState = {
     steroidsPrice: 100,
     cursorCrackPrice: 50,
     gamblingPrice: 150,
+    extremeGamblingPrice: 250,
     fentanylPrice: 500,
 
     // extra stats

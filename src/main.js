@@ -243,7 +243,7 @@ function beIrresponsible() {
 }
 function beMoreIrresponsible() {
     const loseChance = 0.95;
-    if (gameState.points >= gameState.gamblingPrice) {
+    if (gameState.points >= gameState.extremeGamblingPrice) {
         if (Math.random() < loseChance) {
             // lose
             const loss = Math.floor(Math.random() * gameState.points);
@@ -264,7 +264,7 @@ function beMoreIrresponsible() {
             if (gameState.extremeGamblingWon == false) { gameState.extremeGamblingWon = true; }
             playSfx("sfx_diceThrow");
         }
-        gameState.gamblingPrice *= 3;
+        gameState.extremeGamblingPrice *= 3;
         updateStatMeters();
     } else { return insufficientPoints(); }
 }
