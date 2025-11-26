@@ -37,6 +37,7 @@ let gameStateAch = new Map([
     ["oneHundredGamblesWon", false],
     ["fiveHundredGamblesWon", false],
     ["tenThousandPointsWonFromGambling", false],
+    ["extremeGambling", false],
 
     // steroids
     ["tenSteroids", false],
@@ -65,6 +66,7 @@ let gameStateAch = new Map([
     ["oneThousandAPS", false],
     ["oneHundredThousandAPS", false],
 
+    ["fentanyl", false],
     ["cursorCrack", false],
     ["achNaN", false],
     ["achInfinity", false]

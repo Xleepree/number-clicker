@@ -167,6 +167,11 @@ const data_achievements = `
                 <p>Win ten thousand points gambling.</p>
             </div>
 
+            <div id="ach_extremeGambling">
+                <h2>J-A-C-K-P-O-T-!</h2>
+                <p>Win at extreme gambling.</p>
+            </div>
+
             <hr>
 
             <div id="ach_oneThousandPointsSpent">
@@ -219,6 +224,11 @@ const data_achievements = `
             </div>
 
             <hr>
+
+            <div id="ach_fentanyl">
+                <h2>Oh HELL no</h2>
+                <p>Use ... Fentanyl.</p>
+            </div>
 
             <div id="ach_cursorCrack">
                 <h2>Digital substance abuse</h2>
