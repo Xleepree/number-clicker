@@ -22,7 +22,8 @@ let gameState = {
     gamblingPointsWon: 0,
     pointsSpent: 0,
     gamblesLost: 0,
-    gamblingPointsLost: 0
+    gamblingPointsLost: 0,
+    extremeGamblingWon: false
 };
 
 let gameStateAch = new Map([

@@ -276,6 +276,7 @@ function checkForAch() {
     if (gameState.gamblesWon >= 100) { ach("oneHundredGamblesWon"); }
     if (gameState.gamblesWon >= 500) { ach("fiveHundredGamblesWon"); }
     if (gameState.gamblingPointsWon >= 10000) { ach("tenThousandPointsWonFromGambling"); }
+    if (gameState.extremeGamblingWon == true) { ach("extremeGambling"); }
 
     // steroids
     if (gameState.steroidsUsed >= 10) { ach("tenSteroids"); }

@@ -81,7 +81,7 @@ function uhOhFent() {
         gameState.fentanylPrice *= 15;
         updateStatMeters();
         playSfx("sfx_pillSpill");
-        if (gameState.fentanylUsed == false) { gameState.fentanylUsed == true; }
+        if (gameState.fentanylUsed == false) { gameState.fentanylUsed = true; }
     } else { return insufficientPoints(); }
 }
 // cursor crack
@@ -216,7 +216,7 @@ function timmy() {
 }
 // gambling
 function beIrresponsible() {
-    const loseChance = 0.55;
+    const loseChance = 0.60;
     if (gameState.points >= gameState.gamblingPrice) {
         if (Math.random() < loseChance) {
             // lose
@@ -241,6 +241,33 @@ function beIrresponsible() {
         updateStatMeters();
     } else { return insufficientPoints(); }
 }
+function beMoreIrresponsible() {
+    const loseChance = 0.95;
+    if (gameState.points >= gameState.gamblingPrice) {
+        if (Math.random() < loseChance) {
+            // lose
+            const loss = Math.floor(Math.random() * gameState.points);
+            gameState.points -= loss;
+            setPoints(gameState.points);
+            alertC(`unlucky! lost ${loss} points`);
+            gameState.gamblesLost++;
+            gameState.gamblingPointsLost += loss;
+            playSfx("sfx_mujajaLaugh");
+        } else {
+            // win
+            const win = Math.floor(Math.random() * (gameState.points * 20));
+            gameState.points += win;
+            setPoints(gameState.points);
+            alertC(`lucky you! won ${win} points`);
+            gameState.gamblesWon++;
+            gameState.gamblingPointsWon += win;
+            if (gameState.extremeGamblingWon == false) { gameState.extremeGamblingWon = true; }
+            playSfx("sfx_diceThrow");
+        }
+        gameState.gamblingPrice *= 3;
+        updateStatMeters();
+    } else { return insufficientPoints(); }
+}
 
 // achievement control
 function ach(ach) {
@@ -260,7 +287,7 @@ const achList = {
     // gambling
     firstGamble: [
         "99% of gamblers quit before winning big",
-        "Gamble for the first time.",
+        "Gamble for the first time."
     ],
     fifteenGamblesLost: [
         "You should stop... nah jk",
@@ -268,31 +295,35 @@ const achList = {
     ],
     oneHundredGamblesLost: [
         "Crippling gambling addiction",
-        "Lose one hundred gambles.",
+        "Lose one hundred gambles."
     ],
     fiveHundredGamblesLost: [
         "Not winning big are you... you look so dumb LOL",
-        "Lose five hundred gambles.",
+        "Lose five hundred gambles."
     ],
     tenThousandPointsLostFromGambling: [
         "Ten thousand reasons to probably keep gambling",
-        "Lose ten thousand points gambling.",
+        "Lose ten thousand points gambling."
     ],
     fifteenGamblesWon: [
         "Keep gambling champ, nothing could possibly go wrong",
-        "Win fifteen gambles.",
+        "Win fifteen gambles."
     ],
     oneHundredGamblesWon: [
         "Wait stop I hate you stop please I want my points back PLEASE",
-        "Win one hundred gambles.",
+        "Win one hundred gambles."
     ],
     fiveHundredGamblesWon: [
         "I can't feed a family on negative numbers man",
-        "Win five hundred gambles.",
+        "Win five hundred gambles."
     ],
     tenThousandPointsWonFromGambling: [
         "Stop gambling I want your points",
-        "Win ten thousand points gambling.",
+        "Win ten thousand points gambling."
+    ],
+    extremeGambling: [
+        "J-A-C-K-P-O-T-!",
+        "Win at extreme gambling."
     ],
 
     // steroids
@@ -306,21 +337,21 @@ const achList = {
     ],
     oneThousandSteroids: [
         "Where's the burn",
-        "Take steroids one thousand times.",
+        "Take steroids one thousand times."
     ],
 
     // points spent
     oneThousandPointsSpent: [
         "Stop wasting money on food Sarah, I want my 8K-Ultra-High-Definiton YouTube back",
-        "Spend one thousand points.",
+        "Spend one thousand points."
     ],
     oneHundredThousandPointsSpent: [
         "I wasn't joking Sarah",
-        "Spend one hundred thousand points.",
+        "Spend one hundred thousand points."
     ],
     oneMillionPointsSpent: [
         "Sarah where did you go",
-        "Spend one million points.",
+        "Spend one million points."
     ],
 
     // autoclickers
@@ -372,11 +403,11 @@ const achList = {
     // aps (autoclicks per second)
     oneThousandAPS: [
         "Points coming to you from - not slaves, I swear",
-        "Reach one thousand autoclicks per second.",
+        "Reach one thousand autoclicks per second."
     ],
     oneHundredThousandAPS: [
         "EMPIRE!",
-        "Reach one hundred thousand autoclicks per second.",
+        "Reach one hundred thousand autoclicks per second."
     ],
 
     fentanyl: [
@@ -391,12 +422,12 @@ const achList = {
 
     achNaN: [
         "Oops",
-        "Your points have become NaN. Please report this issue in detail to the GitHub repo.",
+        "Your points have become NaN. Please report this issue in detail to the GitHub repo."
     ],
 
     achInfinity: [
         "End of the line buddy boy, ya ran out of bits",
-        'Reach the 32-bit integer limit. ("Infinity")',
+        'Reach the 32-bit integer limit. ("Infinity")'
     ],
 };
 
