@@ -264,10 +264,11 @@ const data_options = `
                 <h2>visual</h2>
                 <img src="images/menu/visual.png" class="indicatorImg">
             </div>
-            <p>theme:
+            <p>theme
                 <button onclick="setTheme('')">light</button>
                 <button onclick="setTheme('darkTheme')">dark</button>
             </p>
+            <p>fullscreen <button id="btn_toggleFullscreen">toggle</button>
         </div>
 
         <div>

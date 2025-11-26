@@ -98,6 +98,9 @@ function menuLoad(option) {
         setTimeout(() => { updateStatMeters(); }, 0);
     } else if (option === "data_options") {
         menu.innerHTML = data_menuButtons + data_options;
+        document.getElementById("btn_toggleFullscreen").addEventListener("click", (event) => {
+            toggleWindowFullscreen();
+        });
         setTimeout(() => { updateStatMeters(); }, 0);
     } else { console.error("Bad parameter."); }
 }
@@ -345,3 +348,15 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("main_counterLinesVersion").innerText = gameStateLive.version;
     document.getElementById("menu_homeVersion").innerText = gameStateLive.version;
 });
+
+// fullscreen
+function toggleWindowFullscreen() {
+    if (document.body.requestFullscreen) {
+        if (document.body.fullscreenElement) {
+            document.exitFullscreen();
+            alertC("you have exited fullscreen.");
+        }
+        document.body.requestFullscreen();
+        alertC("you have entered number clicker in fullscreen. You can press F11 or Esc to leave, or toggle manually from options.");
+    }
+}
