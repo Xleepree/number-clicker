@@ -31,7 +31,7 @@ function trackCPS() { gameStateLive.clickCount++; }
 function updateCPS() {
     gameStateLive.cps = gameStateLive.clickCount;
     gameStateLive.clickCount = 0;
-    document.getElementById("stat_cpsMeter").innerText = `CPS(clicks per second): ${gameStateLive.cps} ::`;
+    document.getElementById("stat_cpsMeter").innerHTML = `${gameStateLive.cps}`;
 }
 
 // audio sliders
@@ -164,9 +164,15 @@ function updateStatMeters() {
         }
     }
 
-    // click power (under point counter) vvvvv
+    // click power (under point counter)
     const cpElemMain = document.getElementById("stat_clickPowerDisplay");
-    if (cpElemMain) { cpElemMain.innerText = `click power: ${gameState.pointsPerClick} point(s)`; }
+    if (cpElemMain) { 
+        if (gameState.pointsPerClick == 1) {
+            cpElemMain.innerHTML = `1 point`; 
+        } else {
+            cpElemMain.innerHTML = `${gameState.pointsPerClick} points`; 
+        }
+    }
 
     // prices
     document.getElementById("stritem_steroidsPrice").innerText = `${gameState.steroidsPrice} points`;

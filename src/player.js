@@ -133,6 +133,7 @@ function load(slot) {
         const value = localStorage.getItem(`${prefix}ach-${achName}`);
         gameStateAch.set(achName, value === "true");
     }
+    document.getElementById("main_saveSlotDisplay").innerHTML = gameStateLive.currentSaveSlot;
     playSfx("sfx_compac");
     setPoints(gameState.points);
     autoClick();

@@ -33,14 +33,18 @@
 
 .counterLines {
     border: solid var(--border-color) 2px;
-    justify-content: center;
-    align-items: center;
-    display: flex;
-    overflow-x: scroll;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
     overflow-y: hidden;
-    white-space: nowrap;
     background-color: var(--bg-color);
+}
+
+.counterLines > div {
     color: var(--border-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: solid rgb(126, 126, 126) 2px;
 }
 
 .pointCounter {
