@@ -11,12 +11,12 @@ const data_splashScreen = `
 
 // menu
 const data_menuButtons = `
-    <button onclick="menuLoad('data_home')">home</button>
-    <button onclick="menuLoad('data_stats')">stats</button>
-    <button onclick="menuLoad('data_achievements')">achievements</button>
-    <button onclick="menuLoad('data_options')">options</button>
-    <br>
-    <br>
+    <div class="menuPageHeader">
+        <button onclick="menuLoad('data_home')">home</button>
+        <button onclick="menuLoad('data_stats')">stats</button>
+        <button onclick="menuLoad('data_achievements')">achievements</button>
+        <button onclick="menuLoad('data_options')">options</button>
+    </div>
 `;
 
 const data_home = `
