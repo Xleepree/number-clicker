@@ -28,7 +28,7 @@
 .counterHolder {
     display: grid;
     gap: var(--border-color) 2px;
-    grid-template-rows: 10vh 80vh 10vh;
+    grid-template-rows: 4em calc(100vh - 8em) 4em;
 }
 
 .counterLines {
@@ -95,10 +95,13 @@
     margin: 0 auto;
     display: grid;
     gap: 2px var(--border-color);
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 30em calc(100vw - 60em) 30em;
     height: 100%;
     width: 100%;
 }
+@media (max-width: 1444px) { .pageGrid {
+    grid-template-columns: 1fr 1fr 1fr;
+} }
 .menu {
     text-align: center;
     background-color:  var(--bg-color);

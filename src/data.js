@@ -24,6 +24,8 @@ const data_home = `
 
         <img class="logoImg" src="images/main/numberClicker.png">
         <h1>num.clicker home</h1>
+        <p><a href="https://xleepree.pages.dev/projects">made by xleepree</a> //
+        <a href="https://github.com/Xleepree/number-clicker">repository</a></p>
         <p>clickies for the dopamine</p>
 
         <hr>
