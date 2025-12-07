@@ -430,15 +430,3 @@ const achList = {
         'Reach the 32-bit integer limit. ("Infinity")'
     ],
 };
-
-// theme control
-function setTheme(theme) {
-    document.documentElement.classList.remove("darkTheme");
-    if (theme) { document.documentElement.classList.add(theme); }
-    localStorage.setItem("theme", theme);
-    playSfx("sfx_menuSwitchy");
-}
-document.addEventListener("DOMContentLoaded", () => {
-    const savedTheme = localStorage.getItem("theme") || "";
-    if (savedTheme) { document.documentElement.classList.add(savedTheme); }
-});

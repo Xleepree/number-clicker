@@ -47,6 +47,26 @@ function updateCPS() {
     }
 }
 
+// autosave
+let autosaveInterval;
+document.addEventListener("DOMContentLoaded", () => {
+    if (localStorage.getItem("autosaveEnabled") == "true") {
+        if (gameStateLive.currentSaveSlot == null) { load(1); }
+        if (!autosaveInterval) {
+            autosaveInterval = setInterval(autosave, 60000);
+        }
+    } else if (localStorage.getItem("autosaveEnabled") == "false") {
+        if (autosaveInterval) { 
+            clearInterval(autosaveInterval); 
+            autosaveInterval = null;
+        }
+    }
+});
+function autosave() {
+    save(gameStateLive.currentSaveSlot);
+    notifC("Game saved.");
+}
+
 // anim
 function animateElement(id, animClass) {
     const elem = document.getElementById(id);

@@ -288,6 +288,7 @@ const data_options = `
                 <h2>saves</h2>
                 <img src="images/menu/saves.png" class="indicatorImg">
             </div>
+            <p>autosave <button onclick="toggleAutosave()">toggle</button></p>
             <div class="saveslotsContainer">
 
                 <div style="border: 2px red solid;">

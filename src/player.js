@@ -117,7 +117,7 @@ function save(slot) {
 
 function load(slot) {
     if (gameStateLive.currentSaveSlot == slot) {
-        alertC(`Save slot ${slot} already loaded.`);
+        notifC(`Save slot ${slot} already loaded.`);
         playSfx("sfx_badAlertSound");
         return;
     }
@@ -139,7 +139,7 @@ function load(slot) {
     updateStatMeters();
 }
 
-// This function is demonic. READ IT VERY CAREFULLY
+// This function is no longer demonic but I forgot to say that when I made it that way
 async function reset(slot) {
     const confirmed = await confirmC("are you sure?");
     if (!confirmed) { return; }
@@ -202,4 +202,33 @@ function viewSavedData(save) {
         ${JSON.stringify(achievements, null, 2)}
         `
     );
+}
+
+// theme control
+function setTheme(theme) {
+    document.documentElement.classList.remove("darkTheme");
+    if (theme) { document.documentElement.classList.add(theme); }
+    localStorage.setItem("theme", theme);
+    playSfx("sfx_menuSwitchy");
+}
+document.addEventListener("DOMContentLoaded", () => {
+    const savedTheme = localStorage.getItem("theme") || "";
+    if (savedTheme) { document.documentElement.classList.add(savedTheme); }
+});
+
+// autosave control
+if (!localStorage.getItem("autosaveEnabled")) { localStorage.setItem("autosaveEnabled", "true") }
+function toggleAutosave() {
+    if (localStorage.getItem("autosaveEnabled") == "true") {
+        localStorage.setItem("autosaveEnabled", "false");
+        if (autosaveInterval) {
+            clearInterval(autosaveInterval);
+            autosaveInterval = null;
+        }
+    } else if (localStorage.getItem("autosaveEnabled") == "false") {
+        localStorage.setItem("autosaveEnabled", "true");
+        if (!autosaveInterval) {
+            autosaveInterval = setInterval(autosave, 60000);
+        }
+    }
 }
