@@ -309,10 +309,10 @@
     opacity: 0;
 }
 #main_splashScreenLogo {
-    width: 20vw;
+    width: 20em;
 }
 #main_splashScreenLoading {
-    width: 4vw;
+    width: 3em;
     animation: backgroundSpin 1s linear infinite;
 }
 
