@@ -178,6 +178,7 @@ function updateStatMeters() {
     document.getElementById("stritem_steroidsPrice").innerText = `${gameState.steroidsPrice} points`;
     document.getElementById("stritem_gamblingPrice").innerText = `${gameState.gamblingPrice} points`;
     document.getElementById("stritem_cursorCrackPrice").innerText = `${gameState.cursorCrackPrice} points`;
+    document.getElementById("stritem_fentanylPrice").innerText = `${gameState.fentanylPrice} points`;
 }
 
 // screen boxes
