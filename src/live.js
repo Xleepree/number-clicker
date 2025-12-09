@@ -53,7 +53,9 @@ document.addEventListener("DOMContentLoaded", () => {
     if (localStorage.getItem("autosaveEnabled") == "true") {
         if (gameStateLive.currentSaveSlot == null) { load(1); }
         if (!autosaveInterval) {
-            autosaveInterval = setInterval(autosave, 60000);
+            setTimeout(() => { 
+                autosaveInterval = setInterval(autosave, 60000);
+            }, 60000);
         }
     } else if (localStorage.getItem("autosaveEnabled") == "false") {
         if (autosaveInterval) { 
