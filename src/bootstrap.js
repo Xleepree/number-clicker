@@ -4,7 +4,10 @@
         return true;
     }
     window.onunhandledrejection = function (event) {
-        halt(`Unhandled Promise rejection: ${event.reason}`);
+        halt(`
+            Unhandled Promise rejection: "${event.reason}"
+            ,${event.reason?.stack || "(no stack)"}
+        `);
     }
     function halt(haltInfo) {
         const haltElementHTML = `
