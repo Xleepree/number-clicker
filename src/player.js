@@ -229,7 +229,9 @@ function toggleAutosave() {
     } else if (localStorage.getItem("autosaveEnabled") == "false") {
         localStorage.setItem("autosaveEnabled", "true");
         if (!autosaveInterval) {
-            autosaveInterval = setInterval(autosave, 60000);
+            setTimeout(() => { 
+                autosaveInterval = setInterval(autosave, 60000);
+            }, 60000);
         }
     }
 }
