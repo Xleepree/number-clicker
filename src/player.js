@@ -78,7 +78,7 @@ let gameStateLive = {
     clickCount: 0, // cps meter idle
     cps: 0, // clicks per second
     autoclickerInterval: 0, // autoclicker off
-    version: "v1.2.1"
+    version: "v1.2.2"
 };
 
 const gameStateDefaults = {
