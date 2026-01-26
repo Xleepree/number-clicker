@@ -1,12 +1,57 @@
+// session-only runtime state
+NC.Bootstrap.gameStateLive = {
+    version: "v1.3.0",
+
+    // app flags
+    multimediaUnlocked: false,
+    devToolsDetected: false,
+
+    // gameplay flags
+    achCheckNeeded: false,
+    
+    // gameplay data
+    currentSaveSlot: null, 
+    clickCount: 0,
+    cps: 0,
+
+    // intervals
+    autoclickerInterval: 0,
+    autosaveInterval: null
+};
+
 (function() {
+    // initalization
+    document.addEventListener("DOMContentLoaded", () => {
+        numberClicker();
+    });
+
+    function numberClicker() {
+        NC.Ui.splashScreen();
+
+        // main startup
+        NC.Ui.initializeTheme();
+        NC.Multimedia.loadSfxElements();
+        NC.Multimedia.waitForMultimedia();
+        NC.Player.initializeAutosave();
+        setInterval(NC.Ui.detectDevTools, 5000);
+        setInterval(NC.Ach.checkForAch, 4000);
+        setInterval(NC.Points.updateCPS, 1000);
+        setInterval(NC.Upgrades.autoClick, 1000);
+        setInterval(NC.Ui.updateStatMeters, 2000);
+
+        // load ui
+        NC.Ui.menuLoad("home");
+        NC.Ui.storeLoad("general");
+    }
+
+    // halt: crash if anything goes wrong
     window.onerror = function (msg, src, line, col) {
         halt(`"${msg}" :: ${src}:${line}:${col}`);
         return true;
     }
     window.onunhandledrejection = function (event) {
         halt(`
-            Unhandled Promise rejection: "${event.reason}"
-            ,${event.reason?.stack || "(no stack)"}
+            Unhandled Promise rejection: "${event.reason}",,,${event.reason?.stack || "(no stack)"}
         `);
     }
     function halt(haltInfo) {
@@ -60,3 +105,5 @@
         window.addEventListener = () => {};
     }
 })();
+
+NC.constantsFunction("Bootstrap");

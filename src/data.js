@@ -1,25 +1,195 @@
-/*
-HTML componentstuffs
-Not the best way to do it but it works
-*/
-
 // splash screen
-const data_splashScreen = `
+NC.Data.constants.splashScreen = `
     <img id="main_splashScreenLogo" src="images/main/favicon.png">
     <img id="main_splashScreenLoading" src="images/ui/loading.svg">
 `;
 
-// menu
-const data_menuButtons = `
-    <div class="menuPageHeader">
-        <button onclick="menuLoad('data_home')">home</button>
-        <button onclick="menuLoad('data_stats')">stats</button>
-        <button onclick="menuLoad('data_achievements')">achievements</button>
-        <button onclick="menuLoad('data_options')">options</button>
+// store
+NC.Data.constants.storeButtons = `
+    <div class="pageHeader">
+        <button onclick="NC.Ui.storeLoad('general')" id="btn_storeGeneral">general</button>
+        <button onclick="NC.Ui.storeLoad('autoclickers')" id="btn_storeAutoclickers">autoclickers</button>
     </div>
 `;
+NC.Data.constants.storeGeneral = `
+    <span class="storePage">
 
-const data_home = `
+        <div id="stritem_steroids" onclick="NC.Upgrades.injectSteroids()">
+            <img src="images/upgrades/steroids.png">
+            <h2>steroids</h2>
+            <p>feel the burn<br>
+            it hurts</p>
+            <p>+1 click power</p>
+            <p><small id="stritem_steroidsPrice">100 points</small></p>
+        </div>
+
+        <div id="stritem_fentanyl" onclick="NC.Upgrades.uhOhFent()">
+            <img src="images/upgrades/fentanyl.png">
+            <h2>fentanyl</h2>
+            <p>oh my god no<br>
+            why</p>
+            <p>x2 click power</p>
+            <p><small id="stritem_fentanylPrice">500 points</small></p>
+        </div>
+
+        <div id="stritem_cursorCrack" onclick="NC.Upgrades.mmmCrack()">
+            <img src="images/upgrades/cursorCrack.png">
+            <h2>cursor crack</h2>
+            <p>mmm GAAHAHAHAHAAH I neeD it.<br>
+            <br>
+            multiplies your click power by a random integer for 5 seconds</p>
+            <p><small id="stritem_cursorCrackPrice">50 points</small></p>
+        </div>
+
+        <div id="stritem_gambling" onclick="NC.Upgrades.beIrresponsible()">
+            <img src="images/upgrades/gambling.png">
+            <h2>gambling</h2>
+            <p>when in doubt, gamble! Absolutely nothing could go wrong.<br>
+            <small>Gamble responsibly.</small><br>
+            <br>
+            get up to quadruple the amount of points you have!</p>
+            <p><small id="stritem_gamblingPrice">150 points</small></p>
+        </div>
+
+        <div id="stritem_extremeGambling" onclick="NC.Upgrades.beMoreIrresponsible()">
+            <img src="images/upgrades/extremeGambling.png">
+            <h2>extreme gambling</h2>
+            <p>it's high stakes in this casino. are you going to make that deal?<br>
+            <small>Do it, you chicken</small><br>
+            <br>
+            get up to 20x the amount of points you have! <b>Or lose it all.</b></p>
+            <p><small id="stritem_extremeGamblingPrice">250 points</small></p>
+        </div>
+
+    </span>
+`;
+NC.Data.constants.storeAutoclickers = `
+    <span class="storePage">
+
+        <div id="stritem_helperman" onclick="NC.Upgrades.helperman()">
+            <img src="images/upgrades/helperman.png" id="stritem_helpermanImg">
+            <h2>helper man</h2>
+            <p>helper man helps you with the clickies<br>
+            it's voluntary, i think<br>
+            <br>
+            gives you 15 points per second</p>
+            <p><small>500 points</small></p>
+        </div>
+
+        <div id="stritem_sunglasses" onclick="NC.Upgrades.sunglasses()">
+            <img src="images/upgrades/sunglasses.png">
+            <h2>sunglasses</h2>
+            <p>these sunglasses give you so much aura they give you points<br>
+            sick shades bro<br>
+            <br>
+            gives you 37 points per second <small>hehehehehehe 37</small></p>
+            <p><small>1,350 points</small></p>
+        </div>
+
+        <div id="stritem_sweatshopWorker" onclick="NC.Upgrades.sweatshopWorker()">
+            <img src="images/upgrades/sweatshopworker.png">
+            <h2>sweatshop worker</h2>
+            <p>straight from the shein sweatshop ready to work<br>
+            <br>
+            gives you 99 points per second</p>
+            <p><small>2,500 points</small></p>
+        </div>
+
+        <div id="stritem_fedora" onclick="NC.Upgrades.purchaseFedora()">
+            <img src="images/upgrades/hat.png">
+            <h2>magical fedora</h2>
+            <p>this magical hat will bring points to you!<br>
+            <br>
+            gives you 135 points per second</p>
+            <p><small>5,000 points</small></p>
+        </div>
+
+        <div id="stritem_warjammer" onclick="NC.Upgrades.warjammer()">
+            <img src="images/upgrades/warjammer.png">
+            <h2>warjammer</h2>
+            <p>jammer of war<br>
+            ignore the strawberry ...jam <small>HAH</small><br>
+            <br>
+            gives you 245 points per second</p>
+            <p><small>15,000 points</small></p>
+        </div>
+
+        <div id="stritem_vrooman" onclick="NC.Upgrades.vroomingMan()">
+            <img src="images/upgrades/vrooman.png">
+            <h2>vrooman</h2>
+            <p>My name is vrooman<br>
+            I vroom<br>
+            <br>
+            gives you 440 points per second</p>
+            <p><small>60,000 points</small></p>
+        </div>
+
+        <div id="stritem_dealer" onclick="NC.Upgrades.dealer()">
+            <img src="images/upgrades/dealer.png">
+            <h2>the dealer</h2>
+            <p>he's got points, just come closer<br>
+            <br>
+            gives you 870 points per second</p>
+            <p><small>300,000 points</small></p>
+        </div>
+
+        <div id="stritem_elmaspet" onclick="NC.Upgrades.elmaspet()">
+            <img src="images/upgrades/elmaspet.png">
+            <h2>elmaspet</h2>
+            <p>"my esophagus is not placed correctly"<br>
+            fast fingers fable, miller miner minor, big bandit bob<br>
+            the whole gang<br>
+            <br>
+            gives you 1969 points per second</p>
+            <p><small>1,000,000 points</small></p>
+        </div>
+
+        <div id="stritem_taxevaiden" onclick="NC.Upgrades.tacksEVadion()">
+            <img src="images/upgrades/taxevaiden.png">
+            <h2>Tax E. Vaiden</h2>
+            <p><span style="font-family: 'JetBrains Mono', monospace">
+                for (let i = 0; i < 200000; i++) {<br>
+                    increasePoints();<br>
+                }
+            </span><br>
+            <br>
+            gives you 2936 points per second</p>
+            <p><small>2,000,000 points</small></p>
+        </div>
+
+        <div id="stritem_masterClicker" onclick="NC.Upgrades.initiateMasterClicker()">
+            <img src="images/upgrades/masterclicker.png">
+            <h2>master clicker</h2>
+            <p>a very good autoclicker that will bring you several thousand points<br>
+            <br>
+            gives you 10,001 points per second</p>
+            <p><small>10,000,000 points</small></p>
+        </div>
+
+        <div id="stritem_timmy" onclick="NC.Upgrades.timmy()">
+            <img src="images/upgrades/timmy.png">
+            <h2>timmy</h2>
+            <p>get millions of points with your best friend, Timmy the Eldritch Being!<br>
+            Slaughter.<br>
+            <br>
+            gives you 600,000 points per second</p>
+            <p><small>600,000,000 points</small></p>
+        </div>
+
+    </span>
+`;
+
+
+// menu
+NC.Data.constants.menuButtons = `
+    <div class="pageHeader">
+        <button onclick="NC.Ui.menuLoad('home')" id="btn_menuHome">home</button>
+        <button onclick="NC.Ui.menuLoad('stats')" id="btn_menuStats">stats</button>
+        <button onclick="NC.Ui.menuLoad('achievements')" id="btn_menuAchievements">achievements</button>
+        <button onclick="NC.Ui.menuLoad('options')" id="btn_menuOptions">options</button>
+    </div>
+`;
+NC.Data.constants.menuHome = `
     <span class="menuPage">
 
         <img class="logoImg" src="images/main/numberClicker.png">
@@ -33,7 +203,7 @@ const data_home = `
         <div>
             <div class="menuPageDivHeader">
                 <h2>mike wahousekey</h2>
-                <img src="images/menu/mike-wahousekey.png" class="indicatorImg">
+                <img src="images/menu/mike-wahousekey.png">
             </div>
             <p>he's here<br>
             <small>heehehehehe</small></p>
@@ -42,7 +212,7 @@ const data_home = `
         <div style="text-align: center">
             <div class="menuPageDivHeader">
                 <h2>latest changelog</h2>
-                <img src="images/menu/latest-changelog.png" class="indicatorImg">
+                <img src="images/menu/latest-changelog.png">
             </div>
             <h3 id="menu_homeVersion"></h3>
             <a href="https://github.com/Xleepree/number-clicker/releases">GitHub</a>
@@ -50,8 +220,7 @@ const data_home = `
 
     </span>
 `;
-
-const data_stats = `
+NC.Data.constants.menuStats = `
     <span class="menuPage">
 
         <img src="images/menu/stats.png" class="pageIndicatorImg">
@@ -63,7 +232,7 @@ const data_stats = `
         <div>
             <div class="menuPageDivHeader">
                 <h2>general</h2>
-                <img src="images/menu/general-stats.png" class="indicatorImg">
+                <img src="images/menu/general-stats.png">
             </div>
             <p id="stat_points">points: 0</p>
             <p id="stat_CPower">click power: 1 point(s)</p>
@@ -73,7 +242,7 @@ const data_stats = `
         <div>
             <div class="menuPageDivHeader">
                 <h2>gains</h2>
-                <img src="images/menu/gains.png" class="indicatorImg">
+                <img src="images/menu/gains.png">
             </div>
             <p id="stat_gamblesWonDisplay">gambles won: 0</p>
             <p id="stat_gamblingPointsWonDisplay">points won from gambling: 0</p>
@@ -82,7 +251,7 @@ const data_stats = `
         <div>
             <div class="menuPageDivHeader">
                 <h2>losses</h2>
-                <img src="images/menu/losses.png" class="indicatorImg">
+                <img src="images/menu/losses.png">
             </div>
             <p id="stat_ptsSpentDisplay">points spent: 0</p>
             <p id="stat_gamblesLostDisplay">gambles lost: 0</p>
@@ -91,8 +260,7 @@ const data_stats = `
 
     </span>
 `;
-
-const data_achievements = `
+NC.Data.constants.menuAchievements = `
     <span class="menuPage">
 
         <img src="images/menu/achievements.png" class="pageIndicatorImg">
@@ -251,8 +419,7 @@ const data_achievements = `
 
     </span>
 `;
-
-const data_options = `
+NC.Data.constants.menuOptions = `
     <span class="menuPage">
 
         <img src="images/menu/options.png" class="pageIndicatorImg">
@@ -264,11 +431,11 @@ const data_options = `
         <div>
             <div class="menuPageDivHeader">
                 <h2>visual</h2>
-                <img src="images/menu/visual.png" class="indicatorImg">
+                <img src="images/menu/visual.png">
             </div>
             <p>theme
-                <button onclick="setTheme('')">light</button>
-                <button onclick="setTheme('darkTheme')">dark</button>
+                <button onclick="NC.Ui.setTheme('')">light</button>
+                <button onclick="NC.Ui.setTheme('darkTheme')">dark</button>
             </p>
             <p>fullscreen <button id="btn_toggleFullscreen">toggle</button>
         </div>
@@ -276,50 +443,50 @@ const data_options = `
         <div>
             <div class="menuPageDivHeader">
                 <h2>audio</h2>
-                <img src="images/menu/audio.png" class="indicatorImg">
+                <img src="images/menu/audio.png">
             </div>
             <p>SFX
+                <span id="sfx_sfxValue">100 </span>
                 <input type="range" id="sfx_sfxSlider" min="0" max="100" step="1" value="100"
-                oninput="setSfxVol(this.value)">
-                <span id="sfx_sfxValue">100</span>
+                oninput="NC.Multimedia.setSfxVol(this.value)">
             </p>
         </div>
 
         <div>
             <div class="menuPageDivHeader">
                 <h2>saves</h2>
-                <img src="images/menu/saves.png" class="indicatorImg">
+                <img src="images/menu/saves.png">
             </div>
-            <p>autosave <button onclick="toggleAutosave()">toggle</button></p>
+            <p>autosave <b id="stat_autosaveDisplay"></b><button onclick="NC.Player.toggleAutosave()">toggle</button></p>
             <div class="saveslotsContainer">
 
                 <div style="border: 2px red solid;">
                     <h3>all</h3>
-                    <p style="color: red"><button onclick="reset('all')">reset</button><i> careful!</i></p>
+                    <p style="color: red"><button onclick="NC.Player.reset('all')">reset</button><i> careful!</i></p>
                 </div>
 
                 <div>
                     <h3>save one</h3>
-                    <button onclick="viewSavedData('1')">view saved data</button>
-                    <button onclick="save('1')">save</button>
-                    <button onclick="load('1')">load</button>
-                    <button onclick="reset('1')">reset</button>
+                    <button onclick="NC.Player.viewSavedData('1')">view saved data</button>
+                    <button onclick="NC.Player.save('1')">save</button>
+                    <button onclick="NC.Player.load('1')">load</button>
+                    <button onclick="NC.Player.reset('1')">reset</button>
                 </div>
 
                 <div>
                     <h3>save two</h3>
-                    <button onclick="viewSavedData('2')">view saved data</button>
-                    <button onclick="save('2')">save</button>
-                    <button onclick="load('2')">load</button>
-                    <button onclick="reset('2')">reset</button>
+                    <button onclick="NC.Player.viewSavedData('2')">view saved data</button>
+                    <button onclick="NC.Player.save('2')">save</button>
+                    <button onclick="NC.Player.load('2')">load</button>
+                    <button onclick="NC.Player.reset('2')">reset</button>
                 </div>
 
                 <div>
                     <h3>save three</h3>
-                    <button onclick="viewSavedData('3')">view saved data</button>
-                    <button onclick="save('3')">save</button>
-                    <button onclick="load('3')">load</button>
-                    <button onclick="reset('3')">reset</button>
+                    <button onclick="NC.Player.viewSavedData('3')">view saved data</button>
+                    <button onclick="NC.Player.save('3')">save</button>
+                    <button onclick="NC.Player.load('3')">load</button>
+                    <button onclick="NC.Player.reset('3')">reset</button>
                 </div>
 
             </div>
@@ -329,15 +496,15 @@ const data_options = `
 `;
 
 // screen boxes
-const data_alertBoxHTML = `
+NC.Data.constants.alertBoxHTML = `
     <div id="scrbox_alertBox">
         <div style="overflow-y: auto; padding-right: 1em; max-height: 90%">
             <span id="scrbox_alertBoxContent"></span>
         </div>
-        <button onclick="alertCOK()" class="alertBoxOK">OK</button>
+        <button onclick="NC.Ui.alertCOK()" class="alertBoxOK">OK</button>
     </div>
 `;
-const data_confirmBoxHTML = `
+NC.Data.constants.confirmBoxHTML = `
     <div id="scrbox_confirmBox">
         <div style="overflow-y: auto; max-height: 90%; text-align: center;">
             <span id="scrbox_confirmBoxContent"></span>
@@ -348,25 +515,27 @@ const data_confirmBoxHTML = `
         </span>
     </div>
 `;
-const data_achBoxHTML = `
+NC.Data.constants.achBoxHTML = `
     <div id="scrbox_achBox">
         <div style="overflow-y: auto; padding-right: 1em; max-height: 90%">
             <span id="scrbox_achBoxContent"></span>
         </div>
     </div>
 `;
-const data_infoBoxHTML = `
+NC.Data.constants.infoBoxHTML = `
     <div id="scrbox_infoBox">
         <div style="overflow-y: auto; padding-right: 1em; max-height: 90%">
             <span id="scrbox_infoBoxContent"></span>
         </div>
-        <button onclick="infoCOK()" class="alertBoxOK">OK</button>
+        <button onclick="NC.Ui.infoCOK()" class="alertBoxOK">OK</button>
     </div>
 `;
-const data_notifBoxHTML = `
+NC.Data.constants.notifBoxHTML = `
     <div id="scrbox_notifBox">
         <div style="overflow-y: auto; padding-right: 1em; max-height: 90%">
             <p id="scrbox_notifBoxContent"></p>
         </div>
     </div>
 `;
+
+NC.constantsFunction("Data");

@@ -1,10 +1,25 @@
-/*
-Save control and game state for numberclicker
-uses localStorage to store gameState and gameStateAch in save slots
-*/
+NC.Player.constants.gameStateDefaults = {
+    points: 0,
+    infinity: false,
+    pointsPerClick: 1,
+    autoclickerPower: 0,
+    steroidsPrice: 100,
+    cursorCrackPrice: 50,
+    gamblingPrice: 150,
+    extremeGamblingPrice: 250,
+    fentanylPrice: 500,
+    steroidsUsed: 0,
+    fentanylUsed: false,
+    gamblesWon: 0,
+    gamblingPointsWon: 0,
+    pointsSpent: 0,
+    gamblesLost: 0,
+    gamblingPointsLost: 0,
+    extremeGamblingWon: false
+};
 
-let gameState = {
-    points: Number(document.getElementById("main_points").innerText), // 0
+NC.Player.gameState = {
+    points: NC.Player.constants.gameStateDefaults.points, // 0
     infinity: false,
     pointsPerClick: 1, // click power
     autoclickerPower: 0,
@@ -27,7 +42,7 @@ let gameState = {
     extremeGamblingWon: false
 };
 
-let gameStateAch = new Map([
+NC.Player.gameStateAch = new Map([
     // gambling
     ["firstGamble", false],
     ["fifteenGamblesLost", false],
@@ -73,76 +88,46 @@ let gameStateAch = new Map([
     ["achInfinity", false]
 ]);
 
-let gameStateLive = {
-    currentSaveSlot: null, // no save loaded
-    clickCount: 0, // cps meter idle
-    cps: 0, // clicks per second
-    autoclickerInterval: 0, // autoclicker off
-    version: "v1.2.2"
-};
-
-const gameStateDefaults = {
-    points: 0,
-    infinity: false,
-    pointsPerClick: 1,
-    steroidsPrice: 100,
-    steroidsUsed: 0,
-    cursorCrackPrice: 50,
-    gamblingPrice: 150,
-    autoclickerPower: 0,
-    gamblesWon: 0,
-    gamblingPointsWon: 0,
-    pointsSpent: 0,
-    gamblesLost: 0,
-    gamblingPointsLost: 0
-};
-
-function setSlot(slotNumber) {
-    gameStateLive.currentSaveSlot = slotNumber;
-    load(slotNumber);
-}
-
-function save(slot) {
+NC.Player.save = function(slot) {
     const prefix = `slot${slot}-`;
     // save game state
-    Object.keys(gameState).forEach((key) => {
-        localStorage.setItem(prefix + key, gameState[key]);
+    Object.keys(NC.Player.gameState).forEach((key) => {
+        localStorage.setItem(prefix + key, NC.Player.gameState[key]);
     });
     // save achievements
-    for (let [achName, value] of gameStateAch.entries()) {
+    for (let [achName, value] of NC.Player.gameStateAch.entries()) {
         localStorage.setItem(`${prefix}ach-${achName}`, value);
     }
-    playSfx("sfx_svribble");
+    NC.Multimedia.playSfx("svribble");
 }
 
-function load(slot) {
-    if (gameStateLive.currentSaveSlot == slot) {
-        notifC(`Save slot ${slot} already loaded.`);
-        playSfx("sfx_badAlertSound");
+NC.Player.load = function(slot) {
+    if (NC.Bootstrap.gameStateLive.currentSaveSlot == slot) {
+        NC.Ui.notifC(`Save slot ${slot} already loaded.`);
+        NC.Multimedia.playSfx("badAlertSound");
         return;
     }
-    gameStateLive.currentSaveSlot = slot;
+    NC.Bootstrap.gameStateLive.currentSaveSlot = slot;
     const prefix = `slot${slot}-`;
     // load game state
-    Object.keys(gameState).forEach((key) => {
+    Object.keys(NC.Player.gameState).forEach((key) => {
         const value = localStorage.getItem(prefix + key);
-        gameState[key] = value !== null ? Number(value) : gameStateDefaults[key];
+        NC.Player.gameState[key] = value !== null ? Number(value) : NC.Player.constants.gameStateDefaults[key];
     });
     // load achievements
-    for (let achName of gameStateAch.keys()) {
+    for (let achName of NC.Player.gameStateAch.keys()) {
         const value = localStorage.getItem(`${prefix}ach-${achName}`);
-        gameStateAch.set(achName, value === "true");
+        NC.Player.gameStateAch.set(achName, value === "true");
     }
-    document.getElementById("main_saveSlotDisplay").innerHTML = gameStateLive.currentSaveSlot;
-    playSfx("sfx_compac");
-    setPoints(gameState.points);
-    autoClick();
-    updateStatMeters();
+    document.getElementById("main_saveSlotDisplay").innerHTML = NC.Bootstrap.gameStateLive.currentSaveSlot;
+    NC.Multimedia.playSfx("compac");
+    NC.Points.setPoints(NC.Player.gameState.points);
+    NC.Upgrades.autoClick();
 }
 
 // This function is no longer demonic but I forgot to say that when I made it that way
-async function reset(slot) {
-    const confirmed = await confirmC("are you sure?");
+NC.Player.reset = async function(slot) {
+    const confirmed = await NC.Ui.confirmC("are you sure?");
     if (!confirmed) { return; }
 
     const storeItems = document.querySelectorAll(".upgradeDiv");
@@ -151,9 +136,9 @@ async function reset(slot) {
         Object.keys(localStorage).forEach((key) => {
             if (key.startsWith(prefix)) { localStorage.removeItem(key); }
         });
-        if (Number(slot) == gameStateLive.currentSaveSlot) {
-            Object.assign(gameState, gameStateDefaults);
-            for (let achName of gameStateAch.keys()) { gameStateAch.set(achName, false); }
+        if (Number(slot) == NC.Bootstrap.gameStateLive.currentSaveSlot) {
+            Object.assign(NC.Player.gameState, NC.Player.constants.gameStateDefaults);
+            for (let achName of NC.Player.gameStateAch.keys()) { NC.Player.gameStateAch.set(achName, false); }
             for (const item of storeItems) { item.style.backgroundColor = "var(--bg-color)"; }
             for (const item of storeItems) { item.classList = "upgradeDiv"; }
         }
@@ -161,18 +146,17 @@ async function reset(slot) {
         const theme = localStorage.getItem("theme");
         localStorage.clear();
         if (theme !== null) { localStorage.setItem("theme", theme); }
-        Object.assign(gameState, gameStateDefaults);
-        for (let achName of gameStateAch.keys()) { gameStateAch.set(achName, false); }
+        Object.assign(NC.Player.gameState, NC.Player.constants.gameStateDefaults);
+        for (let achName of NC.Player.gameStateAch.keys()) { NC.Player.gameStateAch.set(achName, false); }
         for (const item of storeItems) { item.style.backgroundColor = "var(--bg-color)"; }
         for (const item of storeItems) { item.classList = "upgradeDiv"; }
     }
-    playSfx("sfx_trash");
-    setPoints(gameState.points);
-    autoClick();
-    updateStatMeters();
+    NC.Multimedia.playSfx("trash");
+    NC.Points.setPoints(NC.Player.gameState.points);
+    NC.Upgrades.autoClick();
 }
 
-function viewSavedData(save) {
+NC.Player.viewSavedData = function(save) {
     const prefix = `slot${save}-`;
     const keys = [
         "points",
@@ -189,10 +173,10 @@ function viewSavedData(save) {
     let data = {};
     keys.forEach((key) => { data[key] = localStorage.getItem(prefix + key); });
     let achievements = {};
-    for (let achName of gameStateAch.keys()) {
+    for (let achName of NC.Player.gameStateAch.keys()) {
         achievements[achName] = localStorage.getItem(`${prefix}ach-${achName}`);
     }
-    infoC(
+    NC.Ui.infoC(
         `
         disclaimer: "null" means you have not saved anything\n
         save ${save} contains:\n
@@ -205,33 +189,42 @@ function viewSavedData(save) {
     );
 }
 
-// theme control
-function setTheme(theme) {
-    document.documentElement.classList.remove("darkTheme");
-    if (theme) { document.documentElement.classList.add(theme); }
-    localStorage.setItem("theme", theme);
-    playSfx("sfx_menuSwitchy");
-}
-document.addEventListener("DOMContentLoaded", () => {
-    const savedTheme = localStorage.getItem("theme") || "";
-    if (savedTheme) { document.documentElement.classList.add(savedTheme); }
-});
-
 // autosave control
-if (!localStorage.getItem("autosaveEnabled")) { localStorage.setItem("autosaveEnabled", "true") }
-function toggleAutosave() {
+NC.Player.initializeAutosave = function() {
+    if (!localStorage.getItem("autosaveEnabled")) { localStorage.setItem("autosaveEnabled", "true"); }
+    if (localStorage.getItem("autosaveEnabled") == "true") {
+        if (NC.Bootstrap.gameStateLive.currentSaveSlot == null) { NC.Player.load(1); }
+        if (!NC.Bootstrap.gameStateLive.autosaveInterval) {
+            setTimeout(function() { 
+                NC.Bootstrap.gameStateLive.autosaveInterval = setInterval(NC.Player.autosave, 60000);
+            }, 60000);
+        }
+    } else if (localStorage.getItem("autosaveEnabled") == "false") {
+        if (NC.Bootstrap.gameStateLive.autosaveInterval) { 
+            clearInterval(NC.Bootstrap.gameStateLive.autosaveInterval); 
+            NC.Bootstrap.gameStateLive.autosaveInterval = null;
+        }
+    }
+}
+NC.Player.autosave = function() {
+    NC.Player.save(NC.Bootstrap.gameStateLive.currentSaveSlot);
+    NC.Ui.notifC("Game saved.");
+}
+NC.Player.toggleAutosave = function() {
     if (localStorage.getItem("autosaveEnabled") == "true") {
         localStorage.setItem("autosaveEnabled", "false");
-        if (autosaveInterval) {
-            clearInterval(autosaveInterval);
-            autosaveInterval = null;
+        if (NC.Bootstrap.gameStateLive.autosaveInterval) {
+            clearInterval(NC.Bootstrap.gameStateLive.autosaveInterval);
+            NC.Bootstrap.gameStateLive.autosaveInterval = null;
         }
     } else if (localStorage.getItem("autosaveEnabled") == "false") {
         localStorage.setItem("autosaveEnabled", "true");
-        if (!autosaveInterval) {
-            setTimeout(() => { 
-                autosaveInterval = setInterval(autosave, 60000);
+        if (!NC.Bootstrap.gameStateLive.autosaveInterval) {
+            setTimeout(function() { 
+                NC.Bootstrap.gameStateLive.autosaveInterval = setInterval(NC.Player.autosave, 60000);
             }, 60000);
         }
     }
 }
+
+NC.constantsFunction("Player");

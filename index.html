@@ -5,46 +5,22 @@
         <title>num.clicker</title>
         <link rel="icon" type="image/x-icon" href="images/main/favicon.png">
         <link rel="stylesheet" href="global.css">
-        <script src="src/bootstrap.js"></script>
-        <script src="src/data.js" defer></script>
-        <script src="src/live.js" defer></script>
-        <script src="src/player.js" defer></script>
-        <script src="src/main.js" defer></script>
-    </head>
 
-    <!-- sfx -->
-    <audio id="sfx_clickSound" src="audio/sfx/click.wav"></audio>
-    <audio id="sfx_storeBellSound" src="audio/sfx/store-bell.mp3"></audio>
-    <audio id="sfx_badAlertSound" src="audio/sfx/badalert.wav"></audio>
-    <audio id="sfx_mujajaLaugh" src="audio/sfx/mujaja.mp3"></audio>
-    <audio id="sfx_gunCock" src="audio/sfx/gun-cock.mp3"></audio>
-    <audio id="sfx_clangSound" src="audio/sfx/clang.mp3"></audio>
-    <audio id="sfx_diceThrow" src="audio/sfx/dice.mp3"></audio>
-    <audio id="sfx_achSound" src="audio/sfx/ach.wav"></audio>
-    <audio id="sfx_ohSnap" src="audio/sfx/ohsnap.wav"></audio>
-    <audio id="sfx_knockou" src="audio/sfx/knockou.wav"></audio>
-    <audio id="sfx_freepBeep" src="audio/sfx/freepbeep.wav"></audio>
-    <audio id="sfx_sewing" src="audio/sfx/sewing.wav"></audio>
-    <audio id="sfx_velcro" src="audio/sfx/velcro.wav"></audio>
-    <audio id="sfx_boom" src="audio/sfx/boom.ogg"></audio>
-    <audio id="sfx_whatHaveYouDone" src="audio/sfx/whathaveyoudone.wav"></audio>
-    <audio id="sfx_keyboardy" src="audio/sfx/keyboardy.ogg"></audio>
-    <audio id="sfx_feelingFunny" src="audio/sfx/feelingFunny.wav"></audio>
-    <audio id="sfx_magick" src="audio/sfx/magick.mp3"></audio>
-    <audio id="sfx_powenup" src="audio/sfx/powenup.wav"></audio>
-    <audio id="sfx_syringe" src="audio/sfx/syringe.wav"></audio>
-    <audio id="sfx_infoDing" src="audio/sfx/infoDing.wav"></audio>
-    <audio id="sfx_menuSwitchy" src="audio/sfx/menuSwitchy.wav"></audio>
-    <audio id="sfx_confirmyLialog" src="audio/sfx/confirmyLialog.wav"></audio>
-    <audio id="sfx_svribble" src="audio/sfx/svribble.wav"></audio>
-    <audio id="sfx_trash" src="audio/sfx/trash.wav"></audio>
-    <audio id="sfx_compac" src="audio/sfx/compac.wav"></audio>
-    <audio id="sfx_pillSpill" src="audio/sfx/pillSpill.wav"></audio>
+        <script src="src/core.js"></script>
+        <script src="src/data.js" defer></script>
+        <script src="src/player.js" defer></script>
+        <script src="src/points.js" defer></script>
+        <script src="src/multimedia.js" defer></script>
+        <script src="src/ui.js" defer></script>
+        <script src="src/upgrades.js" defer></script>
+        <script src="src/ach.js" defer></script>
+        <script src="src/bootstrap.js" defer></script>
+    </head>
 
     <body>
         <div class="pageGrid">
 
-            <div class="menu" id="main_menu"></div>
+            <div id="main_menu"></div>
 
             <div class="counterHolder">
                 <div class="counterLines">
@@ -56,7 +32,7 @@
                     </div>
                 </div>
 
-                <div class="pointCounter" onclick="increasePoints()">
+                <div class="pointCounter" onclick="NC.Points.increasePoints()">
                     <div id="main_pointCounterGradient"></div>
                     <h1 id="main_points">0</h1>
                 </div>
@@ -71,168 +47,7 @@
                 </div>
             </div>
 
-            <div class="store">
-                <div class="menuPageHeader">
-                    <p><b>store</b></p>
-                </div>
-
-                <div class="upgradeDiv" id="stritem_steroids" onclick="injectSteroids()">
-                    <img class="upgradeImg" src="images/upgrades/steroids.png">
-                    <h2>steroids</h2>
-                    <p>feel the burn<br>
-                    it hurts</p>
-                    <p>+1 click power</p>
-                    <p><small id="stritem_steroidsPrice">100 points</small></p>
-                </div>
-
-                <div class="upgradeDiv" id="stritem_fentanyl" onclick="uhOhFent()">
-                    <img class="upgradeImg" src="images/upgrades/fentanyl.png">
-                    <h2>fentanyl</h2>
-                    <p>oh my god no<br>
-                    why</p>
-                    <p>x2 click power</p>
-                    <p><small id="stritem_fentanylPrice">500 points</small></p>
-                </div>
-
-                <div class="upgradeDiv" id="stritem_helperman" onclick="helperman()">
-                    <img class="upgradeImg" src="images/upgrades/helperman.png" id="stritem_helpermanImg">
-                    <h2>helper man</h2>
-                    <p>helper man helps you with the clickies<br>
-                    it's voluntary, i think<br>
-                    <br>
-                    gives you 15 points per second</p>
-                    <p><small>500 points</small></p>
-                </div>
-
-                <div class="upgradeDiv" id="stritem_sunglasses" onclick="sunglasses()">
-                    <img class="upgradeImg" src="images/upgrades/sunglasses.png">
-                    <h2>sunglasses</h2>
-                    <p>these sunglasses give you so much aura they give you points<br>
-                    sick shades bro<br>
-                    <br>
-                    gives you 37 points per second <small>hehehehehehe 37</small></p>
-                    <p><small>1,350 points</small></p>
-                </div>
-
-                <div class="upgradeDiv" id="stritem_sweatshopWorker" onclick="sweatshopWorker()">
-                    <img class="upgradeImg" src="images/upgrades/sweatshopworker.png">
-                    <h2>sweatshop worker</h2>
-                    <p>straight from the shein sweatshop ready to work<br>
-                    <br>
-                    gives you 99 points per second</p>
-                    <p><small>2,500 points</small></p>
-                </div>
-
-                <div class="upgradeDiv" id="stritem_fedora" onclick="purchaseFedora()">
-                    <img class="upgradeImg" src="images/upgrades/hat.png">
-                    <h2>magical fedora</h2>
-                    <p>this magical hat will bring points to you!<br>
-                    <br>
-                    gives you 135 points per second</p>
-                    <p><small>5,000 points</small></p>
-                </div>
-
-                <div class="upgradeDiv" id="stritem_warjammer" onclick="warjammer()">
-                    <img class="upgradeImg" src="images/upgrades/warjammer.png">
-                    <h2>warjammer</h2>
-                    <p>jammer of war<br>
-                    ignore the strawberry ...jam <small>HAH</small><br>
-                    <br>
-                    gives you 245 points per second</p>
-                    <p><small>15,000 points</small></p>
-                </div>
-
-                <div class="upgradeDiv" id="stritem_vrooman" onclick="vroomingMan()">
-                    <img class="upgradeImg" src="images/upgrades/vrooman.png">
-                    <h2>vrooman</h2>
-                    <p>My name is vrooman<br>
-                    I vroom<br>
-                    <br>
-                    gives you 440 points per second</p>
-                    <p><small>60,000 points</small></p>
-                </div>
-
-                <div class="upgradeDiv" id="stritem_dealer" onclick="dealer()">
-                    <img class="upgradeImg" src="images/upgrades/dealer.png">
-                    <h2>the dealer</h2>
-                    <p>he's got points, just come closer<br>
-                    <br>
-                    gives you 870 points per second</p>
-                    <p><small>300,000 points</small></p>
-                </div>
-
-                <div class="upgradeDiv" id="stritem_elmaspet" onclick="elmaspet()">
-                    <img class="upgradeImg" src="images/upgrades/elmaspet.png">
-                    <h2>elmaspet</h2>
-                    <p>"my esophagus is not placed correctly"<br>
-                    fast fingers fable, miller miner minor, big bandit bob<br>
-                    the whole gang<br>
-                    <br>
-                    gives you 1969 points per second</p>
-                    <p><small>1,000,000 points</small></p>
-                </div>
-
-                <div class="upgradeDiv" id="stritem_taxevaiden" onclick="tacksEVadion()">
-                    <img class="upgradeImg" src="images/upgrades/taxevaiden.png">
-                    <h2>Tax E. Vaiden</h2>
-                    <p><span style="font-family: 'JetBrains Mono', monospace">
-                        for (let i = 0; i < 200000; i++) {<br>
-                            increasePoints();<br>
-                        }
-                    </span><br>
-                    <br>
-                    gives you 2936 points per second</p>
-                    <p><small>2,000,000 points</small></p>
-                </div>
-
-                <div class="upgradeDiv" id="stritem_masterClicker" onclick="initiateMasterClicker()">
-                    <img class="upgradeImg" src="images/upgrades/masterclicker.png">
-                    <h2>master clicker</h2>
-                    <p>a very good autoclicker that will bring you several thousand points<br>
-                    <br>
-                    gives you 10,001 points per second</p>
-                    <p><small>10,000,000 points</small></p>
-                </div>
-
-                <div class="upgradeDiv" id="stritem_timmy" onclick="timmy()">
-                    <img class="upgradeImg" src="images/upgrades/timmy.png">
-                    <h2>timmy</h2>
-                    <p>get millions of points with your best friend, Timmy the Eldritch Being!<br>
-                    Slaughter.<br>
-                    <br>
-                    gives you 600,000 points per second</p>
-                    <p><small>600,000,000 points</small></p>
-                </div>
-
-                <div class="upgradeDiv" id="stritem_cursorCrack" onclick="mmmCrack()">
-                    <img class="upgradeImg" src="images/upgrades/cursorCrack.png">
-                    <h2>cursor crack</h2>
-                    <p>mmm GAAHAHAHAHAAH I neeD it.<br>
-                    <br>
-                    multiplies your click power by a random integer for 5 seconds</p>
-                    <p><small id="stritem_cursorCrackPrice">50 points</small></p>
-                </div>
-
-                <div class="upgradeDiv" id="stritem_gambling" onclick="beIrresponsible()">
-                    <img class="upgradeImg" src="images/upgrades/gambling.png">
-                    <h2>gambling</h2>
-                    <p>when in doubt, gamble! Absolutely nothing could go wrong.<br>
-                    <small>Gamble responsibly.</small><br>
-                    <br>
-                    get up to quadruple the amount of points you have!</p>
-                    <p><small id="stritem_gamblingPrice">150 points</small></p>
-                </div>
-
-                <div class="upgradeDiv" id="stritem_extremeGambling" onclick="beMoreIrresponsible()">
-                    <img class="upgradeImg" src="images/upgrades/extremeGambling.png">
-                    <h2>extreme gambling</h2>
-                    <p>it's high stakes in this casino. are you going to make that deal?<br>
-                    <small>Do it, you chicken</small><br>
-                    <br>
-                    get up to 20x the amount of points you have! <b>Or lose it all.</b></p>
-                    <p><small id="stritem_extremeGamblingPrice">250 points</small></p>
-                </div>
-            </div>
+            <div id="main_store"></div>
 
         </div>
     </body>
