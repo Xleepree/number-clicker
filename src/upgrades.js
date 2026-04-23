@@ -28,7 +28,7 @@ NC.Upgrades.autoClick = function() {
     } else {
         NC.Multimedia.playSfx("clangSound");
         NC.Player.gameState.points += NC.Player.gameState.autoclickerPower;
-        NC.Ui.setPoints(NC.Player.gameState.points);
+        NC.Points.setPoints(NC.Player.gameState.points);
     }
 }
 
