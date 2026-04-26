@@ -26,7 +26,7 @@ NC.constantsFunction = function(domainName) {
     } else {
         for (const key in domain.constants) {
             const value = domain.constants[key];
-            if (typeof value !== null) {
+            if (value && typeof value === "object") {
                 Object.freeze(value);
             }
         }
