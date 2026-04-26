@@ -32,15 +32,6 @@ NC.Data.constants.storeGeneral = `
             <p><small id="stritem_fentanylPrice">500 points</small></p>
         </div>
 
-        <div id="stritem_cursorCrack" onclick="NC.Upgrades.mmmCrack()">
-            <img src="images/upgrades/cursorCrack.png">
-            <h2>cursor crack</h2>
-            <p>mmm GAAHAHAHAHAAH I neeD it.<br>
-            <br>
-            multiplies your click power by a random integer for 5 seconds</p>
-            <p><small id="stritem_cursorCrackPrice">50 points</small></p>
-        </div>
-
         <div id="stritem_gambling" onclick="NC.Upgrades.beIrresponsible()">
             <img src="images/upgrades/gambling.png">
             <h2>gambling</h2>
@@ -59,6 +50,15 @@ NC.Data.constants.storeGeneral = `
             <br>
             get up to 20x the amount of points you have! <b>Or lose it all.</b></p>
             <p><small id="stritem_extremeGamblingPrice">250 points</small></p>
+        </div>
+
+        <div id="stritem_cursorCrack" onclick="NC.Upgrades.mmmCrack()">
+            <img src="images/upgrades/cursorCrack.png">
+            <h2>cursor crack</h2>
+            <p>mmm GAAHAHAHAHAAH I neeD it.<br>
+            <br>
+            multiplies your click power by a random integer for 5 seconds</p>
+            <p><small id="stritem_cursorCrackPrice">50 points</small></p>
         </div>
 
     </span>
