@@ -84,10 +84,14 @@ NC.Multimedia.loadSfxElements = function() {
 }
 
 // sfx vol.
-NC.Multimedia.constants.sfxElements = Array.from(document.querySelectorAll('audio[id^="sfx_"]'));
+NC.Multimedia.getSfxElementsProperties = function() { 
+    let sfxElements = document.querySelectorAll('audio[id^="sfx_"]');
+    NC.Multimedia.sfxElementsProperties = Array.from(sfxElements);
+}
+NC.Multimedia.sfxElementsProperties = [];
 NC.Multimedia.setSfxVol = function(value) {
     const volume = value / 100;
-    for (const el of NC.Multimedia.constants.sfxElements) {
+    for (const el of NC.Multimedia.sfxElementsProperties) {
         el.volume = volume;
     }
     document.getElementById("sfx_sfxValue").innerText = `${value} `;

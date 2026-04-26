@@ -31,6 +31,7 @@ NC.Bootstrap.gameStateLive = {
         // main startup
         NC.Ui.initializeTheme();
         NC.Multimedia.loadSfxElements();
+        NC.Multimedia.getSfxElementsProperties();
         NC.Multimedia.waitForMultimedia();
         NC.Player.initializeAutosave();
         setInterval(NC.Ui.detectDevTools, 5000);
