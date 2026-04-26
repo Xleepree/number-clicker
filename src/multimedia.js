@@ -79,7 +79,7 @@ NC.Multimedia.loadSfxElements = function() {
         const audio = document.createElement("audio");
         audio.id = id;
         audio.src = src;
-        document.head.appendChild(audio);
+        document.body.prepend(audio);
     }
 }
 
