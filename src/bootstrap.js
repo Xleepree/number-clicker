@@ -4,7 +4,6 @@ NC.Bootstrap.gameStateLive = {
 
     // app flags
     multimediaUnlocked: false,
-    devToolsDetected: false,
 
     // gameplay flags
     achCheckNeeded: false,
@@ -34,7 +33,6 @@ NC.Bootstrap.gameStateLive = {
         NC.Multimedia.getSfxElementsProperties();
         NC.Multimedia.waitForMultimedia();
         NC.Player.initializeAutosave();
-        setInterval(NC.Ui.detectDevTools, 5000);
         setInterval(NC.Ach.checkForAch, 4000);
         setInterval(NC.Points.updateCPS, 1000);
         setInterval(NC.Upgrades.autoClick, 1000);

@@ -28,29 +28,6 @@ NC.Ui.fillInVersion = function() {
     if (document.getElementById("menu_homeVersion")) { document.getElementById("menu_homeVersion").innerText = NC.Bootstrap.gameStateLive.version; }
 };
 
-// (attempt at) devtools detection
-NC.Ui.detectDevTools = function() {
-    if (NC.Bootstrap.gameStateLive.devToolsDetected) { 
-        return;
-    } else {
-        NC.Bootstrap.gameStateLive.devToolsDetected = true;
-        const widthDiff = window.outerWidth - window.innerWidth;
-        const heightDiff = window.outerHeight - window.innerHeight;
-        if (widthDiff > 160 || heightDiff > 160) {
-            console.warn("The browser tools may be open.");
-            document.getElementById("main_pointCounterGradient").style.background = `
-                conic-gradient(
-                    rgba(174, 64, 64, 1),
-                    rgba(102, 126, 234, 1),
-                    rgba(141, 213, 42, 1),
-                    rgba(192, 79, 134, 1),
-                    rgba(174, 64, 64, 1)
-                )
-            `;
-        }
-    }
-}
-
 // screen boxes
 // alert
 NC.Ui.alertC = function(text) {
