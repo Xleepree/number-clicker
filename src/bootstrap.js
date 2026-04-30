@@ -43,6 +43,7 @@ NC.Bootstrap.gameStateLive = {
         // load ui
         NC.Ui.menuLoad("home");
         NC.Ui.storeLoad("general");
+        NC.Ui.fillInVersion();
     }
 
     // halt: crash if anything goes wrong

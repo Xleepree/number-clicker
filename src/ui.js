@@ -272,8 +272,6 @@ NC.Ui.updateStatMeters = function() {
     if (document.getElementById("stat_autosaveDisplay")) { 
         document.getElementById("stat_autosaveDisplay").innerText = localStorage.getItem("autosaveEnabled") == "true" ? "on " : "off ";
     }
-
-    NC.Ui.fillInVersion();
 }
 
 NC.constantsFunction("Ui");
