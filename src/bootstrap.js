@@ -19,6 +19,22 @@ NC.Bootstrap.gameStateLive = {
 };
 
 (function() {
+    // looking for errors
+    window.onerror = function (msg, src, line, col) {
+        try {
+            halt(`"${msg}" :: ${src}:${line}:${col}`);
+        } catch (e) {}
+        return true;
+    }
+    window.onunhandledrejection = function (event) {
+        try {
+            event.preventDefault?.();
+            halt(`
+                Unhandled Promise rejection: "${event.reason}",,,${event.reason?.stack || "(no stack)"}
+            `);
+        } catch (e) {}
+    }
+
     // initalization
     document.addEventListener("DOMContentLoaded", () => {
         numberClicker();
@@ -45,19 +61,12 @@ NC.Bootstrap.gameStateLive = {
     }
 
     // halt: crash if anything goes wrong
-    window.onerror = function (msg, src, line, col) {
-        halt(`"${msg}" :: ${src}:${line}:${col}`);
-        return true;
-    }
-    window.onunhandledrejection = function (event) {
-        halt(`
-            Unhandled Promise rejection: "${event.reason}",,,${event.reason?.stack || "(no stack)"}
-        `);
-    }
     function halt(haltInfo) {
         const haltElementHTML = `
             <img id="main_haltIcon" src="images/ui/halt-icon.png">
-            <p id="main_haltInfo"></p>
+            <div id="main_haltInfoContainer">
+                <p id="main_haltInfo"></p>
+            </div>
             <img id="main_haltLoading" src="images/ui/loading.svg">
         `;
         const haltStyles = document.createElement("style");
@@ -80,10 +89,17 @@ NC.Bootstrap.gameStateLive = {
                 width: 40em;
                 margin: -10em 0 -10em 0;
             }
+            #main_haltInfoContainer {
+                display: inline-block;
+                margin-bottom: 3em;
+                background-color: black;
+                max-width: 60em;
+                height: 5em;
+                overflow: scroll;
+            }
             #main_haltInfo {
-                color: black;
+                color: white;
                 font-family: 'JetBrains Mono', monospace !important;
-                margin-bottom: 5em;
             }
             #main_haltLoading {
                 width: 3em;
@@ -93,11 +109,18 @@ NC.Bootstrap.gameStateLive = {
         `;
         document.head.append(haltStyles);
 
-        let haltElement = document.createElement("div");
-        haltElement.id = "main_halt";
-        haltElement.innerHTML = haltElementHTML;
-        document.body.append(haltElement);
-        document.getElementById("main_haltInfo").innerHTML = `<b>number clicker halted: </b>${haltInfo || "unknown error"}`;
+        if (!document.getElementById("main_halt")) {
+            let haltElement = document.createElement("div");
+            haltElement.id = "main_halt";
+            haltElement.innerHTML = haltElementHTML;
+            document.body.append(haltElement);
+        }
+        let haltInfoText = document.getElementById("main_haltInfo");
+        if (haltInfoText.innerText != "") {
+            haltInfoText.append(` + ( ${haltInfo || "unknown error"} )`);
+        } else {
+            haltInfoText.innerHTML = `( ${haltInfo || "unknown error"} )`;
+        }
 
         // kill everything
         window.setTimeout = window.setInterval = window.requestAnimationFrame = function() { return null; }
