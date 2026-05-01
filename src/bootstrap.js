@@ -1,6 +1,6 @@
 // session-only runtime state
 NC.Bootstrap.gameStateLive = {
-    version: "v1.4.0",
+    version: "v1.3.2",
 
     // app flags
     multimediaUnlocked: false,
