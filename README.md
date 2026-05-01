@@ -1,4 +1,4 @@
-<img src="images/main/numberClicker.png" width="400" height="400">
+<img src="images/numberClicker.png" width="400" height="400">
 
 # [number clicker](https://numberclicker.pages.dev)  
 ## CLICKIES FOR THE DOPAMINE

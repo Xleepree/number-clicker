@@ -1,6 +1,6 @@
 // splash screen
 NC.Data.constants.splashScreen = `
-    <img id="main_splashScreenLogo" src="images/main/favicon.png">
+    <img id="main_splashScreenLogo" src="images/numberClicker.png">
     <img id="main_splashScreenLoading" src="images/ui/loading.svg">
 `;
 
@@ -192,7 +192,7 @@ NC.Data.constants.menuButtons = `
 NC.Data.constants.menuHome = `
     <span class="menuPage">
 
-        <img class="logoImg" src="images/main/numberClicker.png">
+        <img class="logoImg" src="images/numberClicker.png">
         <h1>num.clicker home</h1>
         <p><a href="https://xleepree.pages.dev/projects">made by xleepree</a> //
         <a href="https://github.com/Xleepree/number-clicker">repository</a></p>
