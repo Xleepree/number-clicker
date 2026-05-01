@@ -52,7 +52,7 @@
     -ms-user-select: none;
     -webkit-user-select: none;
     border: solid var(--border-color) 2px;
-    font-size: 3vw;
+    font-size: 4em;
     transition: border 1s;
     overflow: hidden;
 }
