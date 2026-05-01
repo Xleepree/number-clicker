@@ -242,6 +242,7 @@ NC.Ui.updateStatMeters = function() {
     // prices
     if (document.getElementById("stritem_steroidsPrice")) { document.getElementById("stritem_steroidsPrice").innerText = `${NC.Player.gameState.steroidsPrice} points`; }
     if (document.getElementById("stritem_gamblingPrice")) { document.getElementById("stritem_gamblingPrice").innerText = `${NC.Player.gameState.gamblingPrice} points`; }
+    if (document.getElementById("stritem_gamblingPrice")) { document.getElementById("stritem_extremeGamblingPrice").innerText = `${NC.Player.gameState.extremeGamblingPrice} points`; }
     if (document.getElementById("stritem_cursorCrackPrice")) { document.getElementById("stritem_cursorCrackPrice").innerText = `${NC.Player.gameState.cursorCrackPrice} points`; }
     if (document.getElementById("stritem_fentanylPrice")) { document.getElementById("stritem_fentanylPrice").innerText = `${NC.Player.gameState.fentanylPrice} points`; }
 
