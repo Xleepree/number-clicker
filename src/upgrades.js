@@ -26,7 +26,7 @@ NC.Upgrades.autoClick = function() {
     if (NC.Player.gameState.autoclickerPower <= 0) { 
         return; 
     } else {
-        NC.Multimedia.playSfx("clangSound");
+        setTimeout(NC.Multimedia.playSfx("clangSound", 0.2), 1000);
         NC.Player.gameState.points += NC.Player.gameState.autoclickerPower;
         NC.Points.setPoints(NC.Player.gameState.points);
     }
