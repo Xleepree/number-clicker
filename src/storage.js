@@ -143,11 +143,11 @@ NC.Storage.initializeSave = function() {
 
 NC.Storage.Autosave = {
     on() {
-        NC.Intervals.startInterval(
-            "autosave",
-            NC.Storage.Autosave.refresh,
-            60000
-        );
+        NC.Intervals.startInterval({
+            name: "autosave",
+            fn: NC.Storage.Autosave.refresh,
+            delay: 60000
+        });
     },
     off() {
         if(NC.Intervals.intervalExists("autosave")) {
