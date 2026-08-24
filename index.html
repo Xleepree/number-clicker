@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" user-scalable="no">
+        <title>nc beta</title>
+        <link rel="icon" type="image/x-icon" href="images/numberClicker.png">
+
+        <meta property="og:title" content="number clicker">
+        <meta property="og:description" content="clickies for the dopamine">
+        <meta property="og:type" content="website">
+        <meta property="og:image" content="images/numberClicker.png">
+        <meta property="og:url" content="numberclicker.pages.dev">
+
+        <link rel="stylesheet" href="css/global.css">
+        <link rel="stylesheet" href="css/page.css">
+        <link rel="stylesheet" href="css/menus.css">
+        <link rel="stylesheet" href="css/screenbox.css">
+
+        <script src="src/core.js"></script>
+        <script src="src/events.js"></script>
+        <script src="src/logs.js"></script>
+        <script src="src/intervals.js"></script>
+        <script src="src/html.js"></script>
+        <script src="src/appmodel.js"></script>
+        <script src="src/gamemodel.js"></script>
+        <script src="src/handlers.js"></script>
+        <script src="src/renderregistry.js"></script>
+        <script src="src/render.js"></script>
+        <script src="src/storage.js"></script>
+        <script src="src/audio.js"></script>
+        <script src="src/points.js"></script>
+        <script src="src/store.js"></script>
+        <script src="src/achs.js"></script>
+        <script src="src/bootstrap.js"></script>
+    </head>
+
+    <body>
+        <div id="page_gameMenu">
+            <div class="menu-navigation">
+                <button id="button_gameMenuNavigationStats" onclick="NC.Handlers.gameMenu('stats')"><p>stats</p></button>
+                <button id="button_gameMenuNavigationAchs" onclick="NC.Handlers.gameMenu('achievements')"><p>achs.</p></button>
+                <button id="button_gameMenuNavigationOptions" onclick="NC.Handlers.gameMenu('options')"><p>options</p></button>
+            </div>
+            <div id="page_gameMenuContent"></div>
+        </div>
+        <div id="page_middleCountertop">
+            <div class="middle-countertop-line">
+                <div>
+                    <p><b>v. </b><span id="textfield_countertopLineVersion"></span></p>
+                </div>
+                <div>
+                    <p><b>slot </b><span id="textfield_countertopLineSlot">0</span></p>
+                </div>
+            </div>
+            <div id="button_pointsBox" onclick="NC.Points.incrementPoints()">
+                <div id="page_pointsBoxGradient"></div>
+                <h1 id="textfield_points">0</h1>
+            </div>
+            <div class="middle-countertop-line">
+                <div>
+                    <p><b>cps </b><span id="textfield_cps">0</span></p>
+                </div>
+                <div>
+                    <p><b>pwr. </b><span id="textfield_clickPower">1 pt.</span></p>
+                </div>
+            </div>
+        </div>
+        <div id="page_storeMenu">
+            <div class="menu-navigation">
+                <button id="button_storeMenuNavigationGeneral" onclick="NC.Handlers.storeMenu('general')"><p>general</p></button>
+                <button id="button_storeMenuNavigationAutoclickers" onclick="NC.Handlers.storeMenu('autoclickers')"><p>autoclickers</p></button>
+            </div>
+            <div id="page_storeMenuContent"></div>
+        </div>
+    </body>
+</html>

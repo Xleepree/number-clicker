@@ -1,0 +1,171 @@
+#page_gameMenu, #page_storeMenu {
+    display: grid;
+    grid-template-rows: 4em calc(100vh - 4em);
+    gap: 2px var(--container-border-color);
+    background-color: var(--container-background-color);
+    border: var(--container-border-bold);
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+.menu-navigation {
+    border: var(--container-border);
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(1px, 1fr));
+    position: sticky;
+    top: 0;
+    z-index: 2;
+}
+.menu-navigation > button {
+    background-color: var(--container-background-color);
+    border: var(--menu-navigation-button-border);
+    border-radius: var(--border-radius);
+    color: var(--container-text-color);
+    font-family: var(--font-family);
+    font-size: 1em;
+    transition: border 500ms, filter 500ms;
+}
+.menu-navigation-button-focused {
+    border: var(--menu-navigation-button-border-focused) !important;
+}
+.menu-navigation > button:hover {
+    filter: invert(1);
+}
+#page_gameMenuContent, #page_storeMenuContent {
+    padding: 1em;
+    font-family: var(--font-family);
+    animation: page-in 300ms;
+}
+#page_gameMenuContent, #page_storeMenuContent > h1, h2 {
+    color: var(--container-text-color);
+    font-family: var(--font-family);
+}
+
+#page_storeMenuContent > div {
+    max-width: 100%;
+    background-color: var(--container-background-color);
+    border: var(--container-border);
+    padding: 1em;
+    color: var(--container-text-color);
+    text-align: left;
+    margin-bottom: 1em;
+    font-family: var(--font-family);
+    overflow: hidden;
+    transition: background-color 500ms;
+}
+#page_storeMenuContent > div:hover {
+    background-color: var(--store-container-hover-color);
+}
+#page_storeMenuContent > div > h1 {
+    margin-top: 0.5em;
+}
+#page_storeMenuContent > div > img {
+    width: 10em;
+    float: right;
+    position: relative;
+    left: 2em;
+    filter: var(--png-shadow-store);
+}
+.store-menu-container-unavailable {
+    filter: brightness(50%);
+    pointer-events: none;
+}
+
+#page_gameMenuContent > img {
+    display: block;
+    width: 12em;
+    margin: 1em 0 1em 0;
+    filter: var(--png-shadow);
+}
+#page_gameMenuContent > div {
+    max-width: 100%;
+    background-color: var(--container-background-color);
+    border: var(--game-menu-container-border);
+    padding: 1em;
+    color: var(--container-text-color);
+    text-align: left;
+    margin-bottom: 1em;
+    font-family: var(--font-family);
+}
+.game-menu-container-header {
+    max-width: 100%;
+    border: var(--container-border);
+    padding: 1em;
+    color: var(--container-text-color);
+    text-align: center;
+}
+.game-menu-container-header > img {
+    display: block;
+    width: 8em;
+    margin: 1em auto 1em auto;
+    filter: var(--png-shadow);
+}
+.achievements-menu-container {
+    max-width: 100%;
+    background-color: var(--container-background-color);
+    border: var(--container-border);
+    padding: 1em;
+    color: var(--container-text-color);
+    margin-bottom: 1em;
+}
+.achievements-menu-container-locked {
+    opacity: 50%;
+}
+.stats-single-info {
+    text-align: center;
+    font-size: 2em;
+    margin: 0.5em 0 0 0;
+}
+#page_gameMenuContent button {
+    border-radius: var(--border-radius);
+    background-color: var(--button-background-color);
+    border: var(--button-border);
+    color: var(--button-text-color);
+    transition: filter 300ms;
+    font-size: 1em;
+    appearance: none;
+}
+#page_gameMenuContent button:hover {
+    filter: invert(1);
+}
+#page_gameMenuContent input[type=range] {
+    appearance: none;
+    border-radius: var(--border-radius);
+    background-color: var(--input-range-background-color);
+    outline: var(--input-range-border);
+    height: 1em;
+    margin: 0 1em 0 1em;
+    padding: 0;
+    display: inline-block;
+}
+#page_gameMenuContent input[type=range]::-webkit-slider-thumb, 
+#page_gameMenuContent input[type=range]::-moz-range-thumb {
+    border-radius: var(--border-radius);
+    appearance: none;
+    background-color: var(--input-range-background-color);
+    outline: var(--input-range-border);
+    height: 1em;
+    transition: filter 500ms;
+}
+#page_gameMenuContent input[type=range]::-webkit-slider-thumb:hover, 
+#page_gameMenuContent input[type=range]::-moz-range-thumb:hover {
+    filter: invert(1);
+}
+#page_saveSlotsConfig {
+    max-width: 100%;
+    background-color: var(--container-background-color);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5em;
+}
+#page_saveSlotsConfig > h2 {
+    color: var(--container-text-color);
+    font-family: var(--font-family);
+}
+#page_saveSlotsConfig > div {
+    max-width: 100%;
+    padding: 0.5em;
+    border: var(--container-border);
+    color: var(--container-text-color);
+    font-family: var(--font-family);
+    box-shadow: var(--container-shadow);
+}

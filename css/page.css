@@ -1,0 +1,79 @@
+body {
+    width: 100vw;
+    height: 100vh;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: 30em calc(100vw - 60em) 30em;
+    gap: 2px var(--container-border-color);
+    overflow: hidden;
+}
+@media (max-width: 1444px) {body{
+    grid-template-columns: 1fr 1fr 1fr;
+}}
+
+#page_middleCountertop {
+    display: grid;
+    grid-template-rows: 4em calc(100vh - 8em) 4em;
+    gap: 2px var(--container-border-color);
+    user-select: none;
+}
+.middle-countertop-line {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    border: var(--container-border);
+}
+.middle-countertop-line > div {
+    color: var(--container-text-color);
+    background-color: var(--container-background-color);
+    font-family: var(--font-family);
+    border: var(--middle-countertop-line-div-border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#button_pointsBox {
+    border: var(--container-border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: border 500ms;
+}
+#button_pointsBox:hover {
+    border: var(--points-box-border-hover);
+}
+#button_pointsBox:active {
+    border: var(--points-box-border-active);
+}
+#textfield_points {
+    color: black;
+    font-family: var(--font-family);
+    font-size: 8em;
+    text-shadow:
+        -4px -4px 0 #fff,
+        4px -4px 0 #fff,
+        -4px  4px 0 #fff,
+        4px  4px 0 #fff;
+}
+#page_pointsBoxGradient {
+    background: conic-gradient(#fff227, #fff8e7, #84adff, #3e7fff, #ff6803, #ffa500, #fff227);
+    animation: spin-360 8s linear infinite;
+    position: absolute;
+    width: 200vw;
+    height: 200vh;
+    z-index: -10;
+}
+#page_cursorCrackEffect {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: white;
+    pointer-events: none;
+    mix-blend-mode: difference;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+    z-index: 5;
+}

@@ -1,0 +1,157 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap');
+
+body {
+    --font-family: Helvetica, Arial, sans-serif;
+    --nc-orange: #ff6500;
+    --nc-green: #77be00;
+
+    --border-radius: 0px;
+    --container-border: 2px solid var(--container-border-color);
+    --container-border-bold: 4px solid var(--container-border-color);
+    --container-shadow: 0 0 8px var(--container-shadow-color);
+    --container-padding: 1em;
+    --middle-countertop-line-div-border: 2px solid var(--middle-countertop-line-div-border-color);
+    --menu-navigation-button-border: 2px solid var(--menu-navigation-button-border-color);
+    --menu-navigation-button-border-focused: 2px solid #007bff;
+    --points-box-border-hover: 24px solid var(--container-border-color);
+    --points-box-border-active: 6px solid var(--container-border-color);
+    --game-menu-container-border: 2px dashed var(--container-border-color);
+    --button-border: 2px dotted var(--button-border-color);
+    --input-range-border: 2px solid var(--input-range-border-color);
+    --png-shadow: drop-shadow(0 0 6px #00000080);
+    --png-shadow-store: drop-shadow(0 0 6px var(--png-shadow-store-color));
+    --reject-color: #ff0000;
+    --screenbox-border: 2px solid var(--container-border-color);
+    --screenbox-notification-border-style: dashed solid solid solid;
+    --screenbox-bezier: cubic-bezier(0.87, 0, 0.13, 1);
+    --screenbox-confirm-button-border: 2px solid var(--screenbox-confirm-button-border-color);
+    --screenbox-achievement-border-style: solid dashed solid solid;
+}
+
+.light-theme {
+    --container-background-color: #ffffff;
+    --container-text-color: #000000;
+    --container-border-color: #000000;
+    --container-shadow-color: #000000;
+    --store-container-hover-color: #faebd7;
+    --middle-countertop-line-div-border-color: #525252;
+    --menu-navigation-button-border-color: #c8c8c8;
+    --button-background-color: #ffffff;
+    --button-border-color: #000000;
+    --button-text-color: #000000;
+    --input-range-background-color: #ffffff;
+    --input-range-border-color: #000000;
+    --screenbox-confirm-button-border-color: #525252;
+    --png-shadow-store-color: #00000080;
+}
+
+.dark-theme {
+    --container-background-color: #000000;
+    --container-text-color: #ffffff;
+    --container-border-color: #ffffff;
+    --container-shadow-color: #ffffff;
+    --store-container-hover-color: #3c0000;
+    --middle-countertop-line-div-border-color: #bdbdbd;
+    --menu-navigation-button-border-color: #3f3f3f;
+    --button-background-color: #000000;
+    --button-border-color: #ffffff;
+    --button-text-color: #ffffff;
+    --input-range-background-color: #000000;
+    --input-range-border-color: #ffffff;
+    --screenbox-confirm-button-border-color: #bdbdbd;
+    --png-shadow-store-color: #ffffff80;
+}
+
+a:link {
+    color: #44abff;
+    text-decoration: none;
+    transition: color 500ms;
+}
+a:visited {
+    color: #44abff;
+    text-decoration: none;
+}
+a:hover {
+    color: #0077ff;
+    text-decoration: underline;
+}
+a:active {
+    color: #0077ff;
+    text-decoration: underline;
+}
+
+@keyframes fade-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+@keyframes fade-out {
+    from { opacity: 1; }
+    to { opacity: 0; }
+}
+@keyframes spin-360 {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+@keyframes pop {
+    0%   { transform: scale(1); }
+    50%  { transform: scale(1.25); }
+    100% { transform: scale(1); }
+}
+@keyframes page-in {
+    from {
+        opacity: 0;
+        transform: translateX(-100%);
+    }
+    to {
+        opacity: 1;
+        transform: none;
+    }
+}
+@keyframes button-reject {
+    0% {}
+    50% {
+        color: var(--reject-color);
+        border-color: var(--reject-color);
+        filter: invert(0);
+    }
+    100% {}
+}
+@keyframes container-reject {
+    0% {}
+    50% {
+        border-color: var(--reject-color);
+    }
+    100% {}
+}
+
+.animclass-fade-in {
+    animation: fade-in 200ms;
+}
+.animclass-fade-out {
+    animation: fade-out 200ms;
+}
+.animclass-spin-360 {
+    animation: spin-360 200ms;
+}
+.animclass-pop {
+    animation: pop 200ms;
+}
+.animclass-button-reject {
+    animation: button-reject 700ms;
+}
+.animclass-container-reject {
+    animation: container-reject 700ms;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+}
+.header-margin {
+    margin: 1em;
+}
+.header-margin-top {
+    margin-top: 1em;
+}
+.header-margin-bottom {
+    margin-bottom: 1em;
+}
