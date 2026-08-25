@@ -1,5 +1,5 @@
 NC.Store.affordable = function(price) {
-    return price < NC.GameModel.core.points;
+    return price <= NC.GameModel.core.points;
 }
 
 NC.Store.purchaseAutoclicker = function({
