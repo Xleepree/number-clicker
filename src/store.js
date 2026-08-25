@@ -156,7 +156,7 @@ NC.Store.general = {
             NC.GameModel.core.clickPower *= Math.floor(Math.random() * ceiling);
             NC.Events.Signals.emit(NC.Events.events.gameModel.clickPowerUpdated);
             NC.Audio.playSfx("feelingFunny");
-            storeObject.price *= 3;
+            storeObject.price *= 5;
             setTimeout(() => {
                 NC.Render.cursorCrackEffect("remove");
                 NC.GameModel.core.clickPower = startClickPower;
