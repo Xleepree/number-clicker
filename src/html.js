@@ -145,3 +145,7 @@ NC.HTML.constants.gameMenuOptions = `
         </p>
     </div>
 `;
+
+NC.HTML.constants.splashScreen = `
+    <img id="page_splashScreenLogo" src="images/numberClicker.png">
+`;

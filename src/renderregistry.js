@@ -38,6 +38,12 @@ NC.RenderRegistry.elements = {
         },
         cursorCrackEffect: {
             id: "page_cursorCrackEffect"
+        },
+        splashScreen: {
+            id: "page_splashScreen"
+        },
+        splashScreenLogo: {
+            id: "page_splashScreenLogo"
         }
     },
     textfield: {

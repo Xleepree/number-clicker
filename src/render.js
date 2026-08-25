@@ -529,6 +529,21 @@ NC.Render.cursorCrackEffect = function(action) {
     }
 }
 
+NC.Render.splashScreen = function() {
+    const splashRegistryNode = NC.RenderRegistry.elements.page.splashScreen;
+    const splashLogoRegistryNode = NC.RenderRegistry.elements.page.splashScreenLogo;
+    let elem = document.createElement("div");
+    elem.id = splashRegistryNode.id;
+    elem.innerHTML = NC.HTML.constants.splashScreen;
+    document.body.appendChild(elem);
+    setTimeout(() => {
+        elem.style.opacity = "0";
+        setTimeout(() => {
+            elem.remove();
+        }, 500);
+    }, 3000);
+}
+
 NC.Render.initialFlush = function() {
     NC.Render.theme();
     NC.Render.points();

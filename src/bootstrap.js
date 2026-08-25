@@ -15,6 +15,7 @@
         NC.Handlers.Init.firstUserInteraction();
         NC.Handlers.Init.Cps();
         NC.Handlers.Init.autoclick();
+        NC.Handlers.Init.splashScreen();
         NC.freezeAllDomainConstants();
         return NC.Logs.internalMessage(
             `Initialized number clicker, version ${NC.version}`

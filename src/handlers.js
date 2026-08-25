@@ -303,6 +303,10 @@ NC.Handlers.Init = {
             fn: NC.Points.autoclick,
             delay: 1000
         });
+    },
+    splashScreen() {
+        NC.Render.splashScreen();
+        return NC.Logs.internalMessage("Appending splash screen...");
     }
 };
 

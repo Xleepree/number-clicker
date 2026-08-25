@@ -64,6 +64,7 @@ body {
     height: 200vh;
     z-index: -10;
 }
+
 #page_cursorCrackEffect {
     position: fixed;
     top: 0;
@@ -74,6 +75,25 @@ body {
     pointer-events: none;
     mix-blend-mode: difference;
     opacity: 0;
-    transition: opacity 0.5s ease-in-out;
+    transition: opacity 500ms ease-in-out;
     z-index: 5;
+}
+
+#page_splashScreen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: black;
+    user-select: none;
+    z-index: 6;
+    transition: opacity 500ms ease-in-out;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#page_splashScreenLogo {
+    max-width: 20em;
+    animation: png-splash-pulse 3s ease-in-out infinite;
 }
