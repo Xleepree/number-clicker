@@ -17,7 +17,7 @@
     "magick": "audio/sfx/magick.mp3",
     "menuSwitchy": "audio/sfx/menuSwitchy.wav",
     "mujaja": "audio/sfx/mujaja.mp3",
-    "ohSnap": "audio/sfx/ohsnap.wav",
+    "ohsnap": "audio/sfx/ohsnap.wav",
     "pillSpill": "audio/sfx/pillSpill.wav",
     "powenup": "audio/sfx/powenup.wav",
     "sewing": "audio/sfx/sewing.wav",
