@@ -58,6 +58,9 @@ NC.Render.subscribeToEvents = function() {
     NC.Events.Signals.on(NC.Events.events.gameModel.storeItemPurchased, async ({ itemInfo }) => {
         NC.Render.flushStoreItem(itemInfo);
     });
+    NC.Events.Signals.on(NC.Events.events.gameModel.storeItemAvailabilityChanged, async ({ itemInfo }) => {
+        NC.Render.flushStoreItem(itemInfo);
+    });
     NC.Events.Signals.on(NC.Events.events.gameModel.gambleLost, async () => {
         NC.Render.gamblingStats();
     });

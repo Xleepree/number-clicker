@@ -2,6 +2,13 @@ NC.Store.affordable = function(price) {
     return price <= NC.GameModel.core.points;
 }
 
+NC.Store.setAvailability = function(storeObject, available) {
+    storeObject.available = available;
+    return NC.Events.Signals.emit(NC.Events.events.gameModel.storeItemAvailabilityChanged, {
+        itemInfo: storeObject.itemInfo
+    });
+}
+
 NC.Store.purchaseAutoclicker = function({
         key, 
         gain, 
@@ -14,7 +21,7 @@ NC.Store.purchaseAutoclicker = function({
         });
     } else {
         NC.Points.spendPoints(storeObject.price);
-        storeObject.available = false;
+        NC.Store.setAvailability(storeObject, false);
         if (sound !== null) { NC.Audio.playSfx(sound); }
         NC.GameModel.core.autoclickerPower += gain;
         NC.Events.Signals.emit(NC.Events.events.gameModel.autoclickerPowerUpdated);
@@ -150,6 +157,7 @@ NC.Store.general = {
             });
         } else {
             NC.Points.spendPoints(storeObject.price);
+            NC.Store.setAvailability(storeObject, false);
             const startClickPower = NC.GameModel.core.clickPower;
             NC.Render.cursorCrackEffect("add");
             const ceiling = NC.GameModel.core.clickPower * 7;
@@ -161,6 +169,7 @@ NC.Store.general = {
                 NC.Render.cursorCrackEffect("remove");
                 NC.GameModel.core.clickPower = startClickPower;
                 NC.Events.Signals.emit(NC.Events.events.gameModel.clickPowerUpdated);
+                NC.Store.setAvailability(storeObject, true);
             }, 5000);
             return NC.Events.Signals.emit(NC.Events.events.gameModel.storeItemPurchased, {
                 itemInfo: storeObject.itemInfo

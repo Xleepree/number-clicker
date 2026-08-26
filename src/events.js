@@ -118,6 +118,10 @@ NC.Events.events = {
         },
         autoclicked: {
             id: "gamemodel:autoclicked"
+        },
+        storeItemAvailabilityChanged: {
+            id: "gamemodel:store_item_availability_changed",
+            payload: ["itemInfo"]
         }
     },
     renderRegistry: {
