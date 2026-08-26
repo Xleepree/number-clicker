@@ -2,9 +2,6 @@ NC.Audio.subscribeToEvents = function() {
     NC.Events.Signals.on(NC.Events.events.generic.firstUserInteraction, () => {
         NC.Audio.runtime.audioEnabled = true;
     });
-    NC.Events.Signals.on(NC.Events.events.appModel.sfxVolumeChanged, () => {
-        NC.Audio.updateGlobalSfxVolume();
-    });
 }
 
 NC.Audio.runtime = {
@@ -32,7 +29,7 @@ NC.Audio.initializeAllSfx = function() {
     return NC.Logs.internalMessage("Entered SFX into the DOM");
 }
 
-NC.Audio.playSfx = function(id, volume) {
+NC.Audio.playSfx = function(id, volume = 100) {
     const sfxAudio = document.getElementById(`sfx_${id}`);
     if (!sfxAudio) {
         return NC.Logs.internalError(`Could not find audio element for SFX "${id}"`);
@@ -40,15 +37,7 @@ NC.Audio.playSfx = function(id, volume) {
         return NC.Logs.internalWarning(`Refusing to play SFX "${id}," audio is disabled`);
     } else {
         sfxAudio.currentTime = 0;
-        volume ??= 100;
-        sfxAudio.volume = volume / 100;
+        sfxAudio.volume = (NC.AppModel.core.sfxVolume * (volume / 100)) / 100;
         sfxAudio.play();
     }
-}
-
-NC.Audio.updateGlobalSfxVolume = function() {
-    const volume = NC.AppModel.core.sfxVolume;
-    const valueVolume = volume / 100;
-    const sfxVolumes = Array.from(document.querySelectorAll(`audio[id^="sfx_"`));
-    for (const element of sfxVolumes) { element.volume = valueVolume; }
 }
