@@ -98,7 +98,7 @@ NC.Render.points = function() {
     NC.Render.animate(NC.RenderRegistry.elements.textfield.points, "pop");
     for (const element of Object.values(NC.RenderRegistry.elementGroups.points)) {
         if (!NC.Render.getId(element)) { return; }
-        NC.Render.getId(element).innerText = points;
+        NC.Render.getId(element).innerText = points.toLocaleString('en-US');
     }
 }
 
@@ -185,7 +185,7 @@ NC.Render.storeMenu = function() {
                     <img src="images/store/${key}.png">
                     <h1>${values.name}</h1>
                     <p>${values.desc}</p>
-                    <p><small><span id="textfield_${key}Price">${values.price}</span> pts.</small></p>
+                    <p><small><span id="textfield_${key}Price">${values.price.toLocaleString('en-US')}</span> pts.</small></p>
                 `;
                 if (values.available === false) {
                     elem.classList.add("store-menu-container-unavailable");
@@ -206,7 +206,7 @@ NC.Render.storeMenu = function() {
                     <img src="images/store/${key}.png">
                     <h1>${values.name}</h1>
                     <p>${values.desc}</p>
-                    <p><small><span id="textfield_${key}Price">${values.price}</span> pts.</small></p>
+                    <p><small><span id="textfield_${key}Price">${values.price.toLocaleString('en-US')}</span> pts.</small></p>
                 `;
                 if (values.available === false) {
                     elem.classList.add("store-menu-container-unavailable");
