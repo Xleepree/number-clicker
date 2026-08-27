@@ -15,6 +15,7 @@
     transform: translate(-50%, -50%) scale(0);
     transform-origin: center;
     box-shadow: var(--container-shadow);
+    user-select: none;
 }
 .screenbox-confirm-ready {
     opacity: 1;
@@ -73,6 +74,7 @@
     transition: opacity 300ms, transform 300ms, var(--screenbox-bezier) 300ms;
     z-index: 4;
     box-shadow: var(--container-shadow);
+    user-select: none;
 }
 .screenbox-achievement-ready {
     opacity: 1;
@@ -97,6 +99,7 @@
     transition: opacity 300ms, transform 300ms, var(--screenbox-bezier) 300ms;
     z-index: 4;
     box-shadow: var(--container-shadow);
+    user-select: none;
 }
 .screenbox-notification-ready {
     opacity: 1;

@@ -14,6 +14,7 @@
     position: sticky;
     top: 0;
     z-index: 2;
+    user-select: none;
 }
 .menu-navigation > button {
     background-color: var(--container-background-color);
@@ -75,6 +76,7 @@
     width: 12em;
     margin: 1em 0 1em 0;
     filter: var(--png-shadow);
+    user-select: none;
 }
 #page_gameMenuContent > div {
     max-width: 100%;
@@ -92,6 +94,7 @@
     padding: 1em;
     color: var(--container-text-color);
     text-align: center;
+    user-select: none;
 }
 .game-menu-container-header > img {
     display: block;
