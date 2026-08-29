@@ -1,5 +1,5 @@
 window.NC = {};
-NC.version = "0.1.0";
+NC.version = "0.1.1";
 
 NC.initializeDomain = function(domainName) {
     if (NC[domainName]) {
