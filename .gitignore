@@ -43,3 +43,4 @@ dist
 .fusebox/
 .dynamodb/
 .tern-port
+.DS_Store
