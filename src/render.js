@@ -252,7 +252,7 @@ NC.Render.achievements = function() {
 NC.Render.statPoints = function() {
     const node = NC.Render.getId(NC.RenderRegistry.elements.textfield.statPoints);
     if (!node) { return; }
-    node.innerText = NC.GameModel.core.points.toLocaleString('en-US');
+    node.innerText = NC.GameModel.core.points;
 }
 
 NC.Render.statClickPower = function() {
@@ -495,7 +495,7 @@ NC.Render.flushStoreItem = function(itemInfo) {
     } else if (object.available === true) {
         node.classList.remove("store-menu-container-unavailable");
     }
-    priceNode.innerText = object.price.toLocaleString('en-US');
+    priceNode.innerText = object.price;
 }
 
 NC.Render.gamblingStats = function() {
